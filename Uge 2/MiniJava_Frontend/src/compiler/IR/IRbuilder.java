@@ -14,6 +14,7 @@ public class IRbuilder extends AbstractParseTreeVisitor<IR> implements MiniJavaV
 //	  : mainClass ( classDeclaration )*
 //	  ;
 
+	 // Rygterne siger at Thor har en stor en 
 	 
 	public MJProgram visitProgram(MiniJavaParser.ProgramContext ctx) {
 		
