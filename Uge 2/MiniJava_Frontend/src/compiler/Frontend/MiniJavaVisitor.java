@@ -1,4 +1,4 @@
-// Generated from /Users/probst/Repositories/workspace/MiniJavaCompiler_Master_1_Frontend/src/compiler/Frontend/MiniJava.g4 by ANTLR 4.1
+// Generated from C:\Users\Thor\Dropbox\DUT\3.Sem\Compiler Teknik\Ass 3\MiniJava.g4 by ANTLR 4.1
 package compiler.Frontend;
 import org.antlr.v4.runtime.misc.NotNull;
 import org.antlr.v4.runtime.tree.ParseTreeVisitor;
@@ -12,32 +12,11 @@ import org.antlr.v4.runtime.tree.ParseTreeVisitor;
  */
 public interface MiniJavaVisitor<T> extends ParseTreeVisitor<T> {
 	/**
-	 * Visit a parse tree produced by {@link MiniJavaParser#methodDeclaration}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitMethodDeclaration(@NotNull MiniJavaParser.MethodDeclarationContext ctx);
-
-	/**
-	 * Visit a parse tree produced by {@link MiniJavaParser#statementMethod}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitStatementMethod(@NotNull MiniJavaParser.StatementMethodContext ctx);
-
-	/**
 	 * Visit a parse tree produced by {@link MiniJavaParser#statementAssign}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitStatementAssign(@NotNull MiniJavaParser.StatementAssignContext ctx);
-
-	/**
-	 * Visit a parse tree produced by {@link MiniJavaParser#mainClass}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitMainClass(@NotNull MiniJavaParser.MainClassContext ctx);
 
 	/**
 	 * Visit a parse tree produced by {@link MiniJavaParser#statementReturn}.
@@ -47,20 +26,6 @@ public interface MiniJavaVisitor<T> extends ParseTreeVisitor<T> {
 	T visitStatementReturn(@NotNull MiniJavaParser.StatementReturnContext ctx);
 
 	/**
-	 * Visit a parse tree produced by {@link MiniJavaParser#identifierIdentifier}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitIdentifierIdentifier(@NotNull MiniJavaParser.IdentifierIdentifierContext ctx);
-
-	/**
-	 * Visit a parse tree produced by {@link MiniJavaParser#expressionConstantFalse}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitExpressionConstantFalse(@NotNull MiniJavaParser.ExpressionConstantFalseContext ctx);
-
-	/**
 	 * Visit a parse tree produced by {@link MiniJavaParser#expressionConstantString}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -68,11 +33,11 @@ public interface MiniJavaVisitor<T> extends ParseTreeVisitor<T> {
 	T visitExpressionConstantString(@NotNull MiniJavaParser.ExpressionConstantStringContext ctx);
 
 	/**
-	 * Visit a parse tree produced by {@link MiniJavaParser#typeBasic}.
+	 * Visit a parse tree produced by {@link MiniJavaParser#expressionPostIncremnt}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitTypeBasic(@NotNull MiniJavaParser.TypeBasicContext ctx);
+	T visitExpressionPostIncremnt(@NotNull MiniJavaParser.ExpressionPostIncremntContext ctx);
 
 	/**
 	 * Visit a parse tree produced by {@link MiniJavaParser#program}.
@@ -80,6 +45,13 @@ public interface MiniJavaVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitProgram(@NotNull MiniJavaParser.ProgramContext ctx);
+
+	/**
+	 * Visit a parse tree produced by {@link MiniJavaParser#statemantDecremnt}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitStatemantDecremnt(@NotNull MiniJavaParser.StatemantDecremntContext ctx);
 
 	/**
 	 * Visit a parse tree produced by {@link MiniJavaParser#type}.
@@ -103,13 +75,6 @@ public interface MiniJavaVisitor<T> extends ParseTreeVisitor<T> {
 	T visitIdThis(@NotNull MiniJavaParser.IdThisContext ctx);
 
 	/**
-	 * Visit a parse tree produced by {@link MiniJavaParser#classDeclaration}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitClassDeclaration(@NotNull MiniJavaParser.ClassDeclarationContext ctx);
-
-	/**
 	 * Visit a parse tree produced by {@link MiniJavaParser#statementAssignArray}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -117,18 +82,11 @@ public interface MiniJavaVisitor<T> extends ParseTreeVisitor<T> {
 	T visitStatementAssignArray(@NotNull MiniJavaParser.StatementAssignArrayContext ctx);
 
 	/**
-	 * Visit a parse tree produced by {@link MiniJavaParser#statement}.
+	 * Visit a parse tree produced by {@link MiniJavaParser#typeChar}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitStatement(@NotNull MiniJavaParser.StatementContext ctx);
-
-	/**
-	 * Visit a parse tree produced by {@link MiniJavaParser#expressionNewObject}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitExpressionNewObject(@NotNull MiniJavaParser.ExpressionNewObjectContext ctx);
+	T visitTypeChar(@NotNull MiniJavaParser.TypeCharContext ctx);
 
 	/**
 	 * Visit a parse tree produced by {@link MiniJavaParser#block}.
@@ -136,13 +94,6 @@ public interface MiniJavaVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitBlock(@NotNull MiniJavaParser.BlockContext ctx);
-
-	/**
-	 * Visit a parse tree produced by {@link MiniJavaParser#typeVoid}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitTypeVoid(@NotNull MiniJavaParser.TypeVoidContext ctx);
 
 	/**
 	 * Visit a parse tree produced by {@link MiniJavaParser#statementPrint}.
@@ -180,25 +131,18 @@ public interface MiniJavaVisitor<T> extends ParseTreeVisitor<T> {
 	T visitIdIDENT(@NotNull MiniJavaParser.IdIDENTContext ctx);
 
 	/**
-	 * Visit a parse tree produced by {@link MiniJavaParser#expression}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitExpression(@NotNull MiniJavaParser.ExpressionContext ctx);
-
-	/**
-	 * Visit a parse tree produced by {@link MiniJavaParser#expressionNewArray}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitExpressionNewArray(@NotNull MiniJavaParser.ExpressionNewArrayContext ctx);
-
-	/**
 	 * Visit a parse tree produced by {@link MiniJavaParser#varDeclaration}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitVarDeclaration(@NotNull MiniJavaParser.VarDeclarationContext ctx);
+
+	/**
+	 * Visit a parse tree produced by {@link MiniJavaParser#expressionPreIncrement}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitExpressionPreIncrement(@NotNull MiniJavaParser.ExpressionPreIncrementContext ctx);
 
 	/**
 	 * Visit a parse tree produced by {@link MiniJavaParser#expressionIdentifier}.
@@ -222,39 +166,11 @@ public interface MiniJavaVisitor<T> extends ParseTreeVisitor<T> {
 	T visitExpressionNegation(@NotNull MiniJavaParser.ExpressionNegationContext ctx);
 
 	/**
-	 * Visit a parse tree produced by {@link MiniJavaParser#typeArray}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitTypeArray(@NotNull MiniJavaParser.TypeArrayContext ctx);
-
-	/**
-	 * Visit a parse tree produced by {@link MiniJavaParser#typeInt}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitTypeInt(@NotNull MiniJavaParser.TypeIntContext ctx);
-
-	/**
 	 * Visit a parse tree produced by {@link MiniJavaParser#identifierId}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitIdentifierId(@NotNull MiniJavaParser.IdentifierIdContext ctx);
-
-	/**
-	 * Visit a parse tree produced by {@link MiniJavaParser#expressionParentheses}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitExpressionParentheses(@NotNull MiniJavaParser.ExpressionParenthesesContext ctx);
-
-	/**
-	 * Visit a parse tree produced by {@link MiniJavaParser#variable}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitVariable(@NotNull MiniJavaParser.VariableContext ctx);
 
 	/**
 	 * Visit a parse tree produced by {@link MiniJavaParser#typeClass}.
@@ -299,13 +215,6 @@ public interface MiniJavaVisitor<T> extends ParseTreeVisitor<T> {
 	T visitStatementWhile(@NotNull MiniJavaParser.StatementWhileContext ctx);
 
 	/**
-	 * Visit a parse tree produced by {@link MiniJavaParser#statementIf}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitStatementIf(@NotNull MiniJavaParser.StatementIfContext ctx);
-
-	/**
 	 * Visit a parse tree produced by {@link MiniJavaParser#level3}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -332,6 +241,160 @@ public interface MiniJavaVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitLevel2(@NotNull MiniJavaParser.Level2Context ctx);
+
+	/**
+	 * Visit a parse tree produced by {@link MiniJavaParser#methodDeclaration}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitMethodDeclaration(@NotNull MiniJavaParser.MethodDeclarationContext ctx);
+
+	/**
+	 * Visit a parse tree produced by {@link MiniJavaParser#statementMethod}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitStatementMethod(@NotNull MiniJavaParser.StatementMethodContext ctx);
+
+	/**
+	 * Visit a parse tree produced by {@link MiniJavaParser#mainClass}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitMainClass(@NotNull MiniJavaParser.MainClassContext ctx);
+
+	/**
+	 * Visit a parse tree produced by {@link MiniJavaParser#identifierIdentifier}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitIdentifierIdentifier(@NotNull MiniJavaParser.IdentifierIdentifierContext ctx);
+
+	/**
+	 * Visit a parse tree produced by {@link MiniJavaParser#expressionConstantFalse}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitExpressionConstantFalse(@NotNull MiniJavaParser.ExpressionConstantFalseContext ctx);
+
+	/**
+	 * Visit a parse tree produced by {@link MiniJavaParser#typeBasic}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitTypeBasic(@NotNull MiniJavaParser.TypeBasicContext ctx);
+
+	/**
+	 * Visit a parse tree produced by {@link MiniJavaParser#classDeclaration}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitClassDeclaration(@NotNull MiniJavaParser.ClassDeclarationContext ctx);
+
+	/**
+	 * Visit a parse tree produced by {@link MiniJavaParser#statement}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitStatement(@NotNull MiniJavaParser.StatementContext ctx);
+
+	/**
+	 * Visit a parse tree produced by {@link MiniJavaParser#expressionNewObject}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitExpressionNewObject(@NotNull MiniJavaParser.ExpressionNewObjectContext ctx);
+
+	/**
+	 * Visit a parse tree produced by {@link MiniJavaParser#typeVoid}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitTypeVoid(@NotNull MiniJavaParser.TypeVoidContext ctx);
+
+	/**
+	 * Visit a parse tree produced by {@link MiniJavaParser#expression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitExpression(@NotNull MiniJavaParser.ExpressionContext ctx);
+
+	/**
+	 * Visit a parse tree produced by {@link MiniJavaParser#statementFor}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitStatementFor(@NotNull MiniJavaParser.StatementForContext ctx);
+
+	/**
+	 * Visit a parse tree produced by {@link MiniJavaParser#expressionNewArray}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitExpressionNewArray(@NotNull MiniJavaParser.ExpressionNewArrayContext ctx);
+
+	/**
+	 * Visit a parse tree produced by {@link MiniJavaParser#expressionPreIncremnt}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitExpressionPreIncremnt(@NotNull MiniJavaParser.ExpressionPreIncremntContext ctx);
+
+	/**
+	 * Visit a parse tree produced by {@link MiniJavaParser#statemantIncremnt}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitStatemantIncremnt(@NotNull MiniJavaParser.StatemantIncremntContext ctx);
+
+	/**
+	 * Visit a parse tree produced by {@link MiniJavaParser#typeArray}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitTypeArray(@NotNull MiniJavaParser.TypeArrayContext ctx);
+
+	/**
+	 * Visit a parse tree produced by {@link MiniJavaParser#typeInt}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitTypeInt(@NotNull MiniJavaParser.TypeIntContext ctx);
+
+	/**
+	 * Visit a parse tree produced by {@link MiniJavaParser#statementTernary}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitStatementTernary(@NotNull MiniJavaParser.StatementTernaryContext ctx);
+
+	/**
+	 * Visit a parse tree produced by {@link MiniJavaParser#expressionParentheses}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitExpressionParentheses(@NotNull MiniJavaParser.ExpressionParenthesesContext ctx);
+
+	/**
+	 * Visit a parse tree produced by {@link MiniJavaParser#variable}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitVariable(@NotNull MiniJavaParser.VariableContext ctx);
+
+	/**
+	 * Visit a parse tree produced by {@link MiniJavaParser#statementIf}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitStatementIf(@NotNull MiniJavaParser.StatementIfContext ctx);
+
+	/**
+	 * Visit a parse tree produced by {@link MiniJavaParser#expressionPostDecrement}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitExpressionPostDecrement(@NotNull MiniJavaParser.ExpressionPostDecrementContext ctx);
 
 	/**
 	 * Visit a parse tree produced by {@link MiniJavaParser#expressionConstantTrue}.

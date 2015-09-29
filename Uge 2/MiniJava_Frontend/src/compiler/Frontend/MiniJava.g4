@@ -5,7 +5,7 @@ program
   ;
 
 classDeclaration
-  : CLASS className=IDENT ( EXTENDS superClassName=IDENT )? 
+   : CLASS className=IDENT ( EXTENDS superClassName=IDENT )? 
     CURLYOPEN 
         ( varDeclaration )* 
         ( methodDeclaration )*
@@ -22,7 +22,9 @@ mainClass
 block  : CURLYOPEN ( varDeclaration )* ( statement )* CURLYCLOSE;
 
 varDeclaration
-  : var=variable  SEMICOLON
+  
+  : var=variable EQUAL CURLYOPEN (expression) (COMMA expression)*? CURLYCLOSE SEMICOLON
+  | var=variable (EQUAL expression | statementMethod)?  SEMICOLON //Dette giver problemer se 'statementAssign'
   ;
 
 variable : type variableName=IDENT
@@ -30,23 +32,26 @@ variable : type variableName=IDENT
 
 type 
    : typeBasic
-   | typeArray
+   | typeArray 
    ;
 
 typeBasic
   : typeBoolean
   | typeInt
   | typeClass
+  | typeChar
   ;
 
 typeArray  
     : typeBasic SQUAREOPEN SQUARECLOSE 
     ;
 
+
 typeBoolean : TYPEBOOLEAN ;
 typeInt     : TYPEINT ;
 typeClass   : className=IDENT;
-                
+typeChar    : TYPECHAR;
+              
 methodDeclaration
   : ( isPublic=PUBLIC  )?
     ( isStatic=STATIC  )? 
@@ -78,15 +83,24 @@ statement
   | statementPrint
   | statementMethod
   | statementReturn
-  ;
-    
+  | statementTernary
+  | statemantIncremnt
+  | statemantDecremnt
+  |statementFor
+  ;     
+   
 statementIf          : IF ROUNDOPEN condition=expression ROUNDCLOSE ifBlock=block (ELSE elseBlock=block )? ;
 statementWhile       : WHILE ROUNDOPEN condition=expression ROUNDCLOSE whileBlock=statement ;
-statementAssign      : lhs=identifier EQUAL rhs=expression SEMICOLON ;
-statementAssignArray : array=identifier SQUAREOPEN element=expression SQUARECLOSE EQUAL value=expression SEMICOLON;
+statementAssign      : lhs=identifier EQUAL rhs=expression SEMICOLON
+                     | lhs=identifier PLUSEQUAL rhs=expression SEMICOLON ;
+statementAssignArray : array=identifier SQUAREOPEN element=expression SQUARECLOSE EQUAL value=expression SEMICOLON ;
 statementPrint       : PRINT ROUNDOPEN argument=expression ROUNDCLOSE SEMICOLON ;
 statementPrintln     : PRINTLN ROUNDOPEN argument=expression ROUNDCLOSE SEMICOLON ;
 statementMethod      : expressionMethodCall SEMICOLON;
+statementTernary     : (opt_ident=identifier EQUAL)? (condition=expression TERNARY_PART1 (ident_a=identifier | expr_a=expression) TERNARY_PART2 (ident_b=identifier | expr_b=expression) SEMICOLON);
+statemantIncremnt    : (expressionPostIncremnt | expressionPreIncremnt) SEMICOLON;
+statemantDecremnt    : (expressionPostDecrement | expressionPostDecrement) SEMICOLON;
+statementFor         : FOR ROUNDOPEN (varDeclaration) expression SEMICOLON expression ROUNDCLOSE statement;          
 
 statementReturn  : RETURN ( argument=expression )? SEMICOLON ;
 
@@ -123,6 +137,10 @@ level5
     | expressionConstantFalse
     | expressionConstantInteger
     | expressionConstantString
+    | expressionPostIncremnt
+    | expressionPreIncremnt
+    | expressionPostDecrement 
+    | expressionPreIncrement  
     ; 
   
 expressionUnaryMinus      : MINUS argument=level5 ;
@@ -137,6 +155,10 @@ expressionConstantFalse   : FALSE ;
 expressionConstantInteger : value=INT ;
 expressionConstantString  : value=STRING ;
 expressionMethodCall      : (object=identifier DOT)? method=IDENT ROUNDOPEN (arguments+=expression (COMMA arguments+=expression)* )? ROUNDCLOSE ;
+expressionPostIncremnt    : identifier INCREMENT;
+expressionPreIncremnt     : INCREMENT identifier;
+expressionPostDecrement   : identifier DECREMENT;
+expressionPreIncrement    : DECREMENT identifier;
 
 identifier
   : identifierIdentifier;
@@ -157,6 +179,7 @@ MINUS : '-' ;
 AND : '&&' ;
 EQUALS : '==' ;
 LESSTHAN : '<' ;
+//GEATERTHAN : '>';
 PLUS : '+' ;
 TIMES : '*' ;
 EXCLAMATION : '!' ;
@@ -164,6 +187,8 @@ SEMICOLON : ';' ;
 COMMA : ',' ;
 EQUAL : '=' ;
 DOT : '.' ;
+INCREMENT : '++';
+DECREMENT : '--';
 
 ROUNDOPEN : '(' ;
 ROUNDCLOSE : ')' ;
@@ -171,7 +196,10 @@ SQUAREOPEN : '[' ;
 SQUARECLOSE : ']' ;
 CURLYOPEN : '{' ;
 CURLYCLOSE : '}' ;
-
+TERNARY_PART1 : '?';
+TERNARY_PART2 : ':';
+PLUSEQUAL : '+=' ;
+             
 TRUE : 'true' ;
 FALSE : 'false' ;
 CLASS : 'class' ;
@@ -179,12 +207,14 @@ EXTENDS : 'extends' ;
 TYPEBOOLEAN : 'boolean' ;
 TYPEVOID : 'void'  ;
 TYPEINT : 'int' ;
+TYPECHAR : 'char';
 PUBLIC : 'public' ;
 STATIC : 'static' ;
 THIS : 'this' ;
 IF : 'if' ;
 ELSE : 'else' ;
 WHILE : 'while' ;
+FOR   : 'for';
 PRINT : 'System.out.print' ;
 PRINTLN : 'System.out.println' ;
 RETURN : 'return' ;
