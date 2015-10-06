@@ -30,7 +30,7 @@ public class MiniJavaParser extends Parser {
 		"'boolean'", "'void'", "'int'", "'char'", "'public'", "'static'", "'this'", 
 		"'if'", "'else'", "'while'", "'for'", "'System.out.print'", "'System.out.println'", 
 		"'return'", "'new'", "IDENT", "INT", "STRING", "LINE_COMMENT", "MULTILINE_COMMENT", 
-		"WHITESPACE", "PAtrickIsAPlayer"
+		"WHITESPACE"
 	};
 	public static final int
 		RULE_program = 0, RULE_classDeclaration = 1, RULE_mainClass = 2, RULE_block = 3, 
