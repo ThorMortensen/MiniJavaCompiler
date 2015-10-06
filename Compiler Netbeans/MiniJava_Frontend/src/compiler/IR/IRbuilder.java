@@ -101,17 +101,8 @@ public class IRbuilder extends AbstractParseTreeVisitor<IR> implements MiniJavaV
         return x;
     }
     
-       public MJVariable visitarDeclarationStaticArray(MiniJavaParser.VarDeclarationStaticArrayContext ctx) {
-                MJVariable x = visitVariable(ctx.var);
-                int size = ctx.expression().size();
-                MJExpression[] exp = new MJExpression[size];
-                for (int i=0; i<size; i++) {
-                    exp[i] = visitExpression(ctx.expression(i));
-                }
-                
-                return new MJVariable(x.getType(), x.getName(), exp);
-            
-    }
+    
+    
 
 //	variable : type variableName=IDENT;
     public MJVariable visitVariable(MiniJavaParser.VariableContext ctx) {
@@ -606,8 +597,16 @@ public class IRbuilder extends AbstractParseTreeVisitor<IR> implements MiniJavaV
     }
 
     @Override
-    public IR visitVarDeclarationStaticArray(VarDeclarationStaticArrayContext ctx) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public MJVariable visitVarDeclarationStaticArray(VarDeclarationStaticArrayContext ctx) {
+        
+                MJVariable x = visitVariable(ctx.var);
+                int size = ctx.expression().size();
+                MJExpression[] exp = new MJExpression[size];
+                for (int i=0; i<size; i++) {
+                    exp[i] = visitExpression(ctx.expression(i));
+                }
+                
+                return new MJVariable(x.getType(), x.getName(), exp);
     }
 
     @Override
@@ -623,8 +622,23 @@ public class IRbuilder extends AbstractParseTreeVisitor<IR> implements MiniJavaV
     }
 
     @Override
-    public IR visitVarDeclarationAssign(VarDeclarationAssignContext ctx) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public MJVariable visitVarDeclarationAssign(VarDeclarationAssignContext ctx) {
+        
+        
+        MJVariable x = visitVariable(ctx.var);
+        
+        MJExpression expr;
+        MJStatement statem;
+        
+        if(ctx.expr != null){
+            expr = visitExpression(ctx.expr);
+            return new MJVariable(x.getType(), x.getName(), expr);
+        }
+        else{
+            statem = visitStatementMethod(ctx.statem);
+            return new MJVariable(x.getType(), x.getName(), statem);
+        }
+        
     }
 
     @Override
