@@ -614,4 +614,14 @@ public class IRbuilder extends AbstractParseTreeVisitor<IR> implements MiniJavaV
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    @Override
+    public IR visitVarDeclarationStaticArray(VarDeclarationStaticArrayContext ctx) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public IR visitVarDeclarationAssign(VarDeclarationAssignContext ctx) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }
