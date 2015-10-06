@@ -3,7 +3,6 @@ package compiler.Frontend;
 import org.antlr.v4.runtime.misc.NotNull;
 import org.antlr.v4.runtime.tree.ParseTreeListener;
 
-
 /**
  * This interface defines a complete listener for a parse tree produced by
  * {@link MiniJavaParser}.
@@ -43,17 +42,6 @@ public interface MiniJavaListener extends ParseTreeListener {
 	void exitExpressionConstantString(@NotNull MiniJavaParser.ExpressionConstantStringContext ctx);
 
 	/**
-	 * Enter a parse tree produced by {@link MiniJavaParser#expressionPostIncremnt}.
-	 * @param ctx the parse tree
-	 */
-	void enterExpressionPostIncremnt(@NotNull MiniJavaParser.ExpressionPostIncremntContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link MiniJavaParser#expressionPostIncremnt}.
-	 * @param ctx the parse tree
-	 */
-	void exitExpressionPostIncremnt(@NotNull MiniJavaParser.ExpressionPostIncremntContext ctx);
-
-	/**
 	 * Enter a parse tree produced by {@link MiniJavaParser#program}.
 	 * @param ctx the parse tree
 	 */
@@ -63,17 +51,6 @@ public interface MiniJavaListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitProgram(@NotNull MiniJavaParser.ProgramContext ctx);
-
-	/**
-	 * Enter a parse tree produced by {@link MiniJavaParser#statemantDecremnt}.
-	 * @param ctx the parse tree
-	 */
-	void enterStatemantDecremnt(@NotNull MiniJavaParser.StatemantDecremntContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link MiniJavaParser#statemantDecremnt}.
-	 * @param ctx the parse tree
-	 */
-	void exitStatemantDecremnt(@NotNull MiniJavaParser.StatemantDecremntContext ctx);
 
 	/**
 	 * Enter a parse tree produced by {@link MiniJavaParser#type}.
@@ -118,6 +95,17 @@ public interface MiniJavaListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitStatementAssignArray(@NotNull MiniJavaParser.StatementAssignArrayContext ctx);
+
+	/**
+	 * Enter a parse tree produced by {@link MiniJavaParser#statementDecrement}.
+	 * @param ctx the parse tree
+	 */
+	void enterStatementDecrement(@NotNull MiniJavaParser.StatementDecrementContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MiniJavaParser#statementDecrement}.
+	 * @param ctx the parse tree
+	 */
+	void exitStatementDecrement(@NotNull MiniJavaParser.StatementDecrementContext ctx);
 
 	/**
 	 * Enter a parse tree produced by {@link MiniJavaParser#typeChar}.
@@ -384,6 +372,17 @@ public interface MiniJavaListener extends ParseTreeListener {
 	void exitLevel2(@NotNull MiniJavaParser.Level2Context ctx);
 
 	/**
+	 * Enter a parse tree produced by {@link MiniJavaParser#expressionPreDecrement}.
+	 * @param ctx the parse tree
+	 */
+	void enterExpressionPreDecrement(@NotNull MiniJavaParser.ExpressionPreDecrementContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MiniJavaParser#expressionPreDecrement}.
+	 * @param ctx the parse tree
+	 */
+	void exitExpressionPreDecrement(@NotNull MiniJavaParser.ExpressionPreDecrementContext ctx);
+
+	/**
 	 * Enter a parse tree produced by {@link MiniJavaParser#methodDeclaration}.
 	 * @param ctx the parse tree
 	 */
@@ -459,6 +458,17 @@ public interface MiniJavaListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitClassDeclaration(@NotNull MiniJavaParser.ClassDeclarationContext ctx);
+
+	/**
+	 * Enter a parse tree produced by {@link MiniJavaParser#expressionPostIncrement}.
+	 * @param ctx the parse tree
+	 */
+	void enterExpressionPostIncrement(@NotNull MiniJavaParser.ExpressionPostIncrementContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MiniJavaParser#expressionPostIncrement}.
+	 * @param ctx the parse tree
+	 */
+	void exitExpressionPostIncrement(@NotNull MiniJavaParser.ExpressionPostIncrementContext ctx);
 
 	/**
 	 * Enter a parse tree produced by {@link MiniJavaParser#statement}.
@@ -538,28 +548,6 @@ public interface MiniJavaListener extends ParseTreeListener {
 	void exitExpressionNewArray(@NotNull MiniJavaParser.ExpressionNewArrayContext ctx);
 
 	/**
-	 * Enter a parse tree produced by {@link MiniJavaParser#expressionPreIncremnt}.
-	 * @param ctx the parse tree
-	 */
-	void enterExpressionPreIncremnt(@NotNull MiniJavaParser.ExpressionPreIncremntContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link MiniJavaParser#expressionPreIncremnt}.
-	 * @param ctx the parse tree
-	 */
-	void exitExpressionPreIncremnt(@NotNull MiniJavaParser.ExpressionPreIncremntContext ctx);
-
-	/**
-	 * Enter a parse tree produced by {@link MiniJavaParser#statemantIncremnt}.
-	 * @param ctx the parse tree
-	 */
-	void enterStatemantIncremnt(@NotNull MiniJavaParser.StatemantIncremntContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link MiniJavaParser#statemantIncremnt}.
-	 * @param ctx the parse tree
-	 */
-	void exitStatemantIncremnt(@NotNull MiniJavaParser.StatemantIncremntContext ctx);
-
-	/**
 	 * Enter a parse tree produced by {@link MiniJavaParser#typeArray}.
 	 * @param ctx the parse tree
 	 */
@@ -602,6 +590,17 @@ public interface MiniJavaListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitExpressionParentheses(@NotNull MiniJavaParser.ExpressionParenthesesContext ctx);
+
+	/**
+	 * Enter a parse tree produced by {@link MiniJavaParser#statementIncrement}.
+	 * @param ctx the parse tree
+	 */
+	void enterStatementIncrement(@NotNull MiniJavaParser.StatementIncrementContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MiniJavaParser#statementIncrement}.
+	 * @param ctx the parse tree
+	 */
+	void exitStatementIncrement(@NotNull MiniJavaParser.StatementIncrementContext ctx);
 
 	/**
 	 * Enter a parse tree produced by {@link MiniJavaParser#variable}.

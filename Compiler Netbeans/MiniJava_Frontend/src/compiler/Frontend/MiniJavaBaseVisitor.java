@@ -3,7 +3,6 @@ package compiler.Frontend;
 import org.antlr.v4.runtime.misc.NotNull;
 import org.antlr.v4.runtime.tree.AbstractParseTreeVisitor;
 
-
 /**
  * This class provides an empty implementation of {@link MiniJavaVisitor},
  * which can be extended to create a visitor which only needs to handle a subset
@@ -43,23 +42,7 @@ public class MiniJavaBaseVisitor<T> extends AbstractParseTreeVisitor<T> implemen
 	 * The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.
 	 */
-	@Override public T visitExpressionPostIncremnt(@NotNull MiniJavaParser.ExpressionPostIncremntContext ctx) { return visitChildren(ctx); }
-
-	/**
-	 * {@inheritDoc}
-	 * <p/>
-	 * The default implementation returns the result of calling
-	 * {@link #visitChildren} on {@code ctx}.
-	 */
 	@Override public T visitProgram(@NotNull MiniJavaParser.ProgramContext ctx) { return visitChildren(ctx); }
-
-	/**
-	 * {@inheritDoc}
-	 * <p/>
-	 * The default implementation returns the result of calling
-	 * {@link #visitChildren} on {@code ctx}.
-	 */
-	@Override public T visitStatemantDecremnt(@NotNull MiniJavaParser.StatemantDecremntContext ctx) { return visitChildren(ctx); }
 
 	/**
 	 * {@inheritDoc}
@@ -92,6 +75,14 @@ public class MiniJavaBaseVisitor<T> extends AbstractParseTreeVisitor<T> implemen
 	 * {@link #visitChildren} on {@code ctx}.
 	 */
 	@Override public T visitStatementAssignArray(@NotNull MiniJavaParser.StatementAssignArrayContext ctx) { return visitChildren(ctx); }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.
+	 */
+	@Override public T visitStatementDecrement(@NotNull MiniJavaParser.StatementDecrementContext ctx) { return visitChildren(ctx); }
 
 	/**
 	 * {@inheritDoc}
@@ -291,6 +282,14 @@ public class MiniJavaBaseVisitor<T> extends AbstractParseTreeVisitor<T> implemen
 	 * The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.
 	 */
+	@Override public T visitExpressionPreDecrement(@NotNull MiniJavaParser.ExpressionPreDecrementContext ctx) { return visitChildren(ctx); }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.
+	 */
 	@Override public T visitMethodDeclaration(@NotNull MiniJavaParser.MethodDeclarationContext ctx) { return visitChildren(ctx); }
 
 	/**
@@ -340,6 +339,14 @@ public class MiniJavaBaseVisitor<T> extends AbstractParseTreeVisitor<T> implemen
 	 * {@link #visitChildren} on {@code ctx}.
 	 */
 	@Override public T visitClassDeclaration(@NotNull MiniJavaParser.ClassDeclarationContext ctx) { return visitChildren(ctx); }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.
+	 */
+	@Override public T visitExpressionPostIncrement(@NotNull MiniJavaParser.ExpressionPostIncrementContext ctx) { return visitChildren(ctx); }
 
 	/**
 	 * {@inheritDoc}
@@ -403,22 +410,6 @@ public class MiniJavaBaseVisitor<T> extends AbstractParseTreeVisitor<T> implemen
 	 * The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.
 	 */
-	@Override public T visitExpressionPreIncremnt(@NotNull MiniJavaParser.ExpressionPreIncremntContext ctx) { return visitChildren(ctx); }
-
-	/**
-	 * {@inheritDoc}
-	 * <p/>
-	 * The default implementation returns the result of calling
-	 * {@link #visitChildren} on {@code ctx}.
-	 */
-	@Override public T visitStatemantIncremnt(@NotNull MiniJavaParser.StatemantIncremntContext ctx) { return visitChildren(ctx); }
-
-	/**
-	 * {@inheritDoc}
-	 * <p/>
-	 * The default implementation returns the result of calling
-	 * {@link #visitChildren} on {@code ctx}.
-	 */
 	@Override public T visitTypeArray(@NotNull MiniJavaParser.TypeArrayContext ctx) { return visitChildren(ctx); }
 
 	/**
@@ -444,6 +435,14 @@ public class MiniJavaBaseVisitor<T> extends AbstractParseTreeVisitor<T> implemen
 	 * {@link #visitChildren} on {@code ctx}.
 	 */
 	@Override public T visitExpressionParentheses(@NotNull MiniJavaParser.ExpressionParenthesesContext ctx) { return visitChildren(ctx); }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.
+	 */
+	@Override public T visitStatementIncrement(@NotNull MiniJavaParser.StatementIncrementContext ctx) { return visitChildren(ctx); }
 
 	/**
 	 * {@inheritDoc}

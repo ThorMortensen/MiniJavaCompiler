@@ -9,7 +9,6 @@ import java.util.List;
 import java.util.Iterator;
 import java.util.ArrayList;
 
-
 @SuppressWarnings({"all", "warnings", "unchecked", "unused", "cast"})
 public class MiniJavaParser extends Parser {
 	protected static final DFA[] _decisionToDFA;
@@ -41,15 +40,15 @@ public class MiniJavaParser extends Parser {
 		RULE_methodDeclaration = 15, RULE_procType = 16, RULE_typeVoid = 17, RULE_statement = 18, 
 		RULE_statementIf = 19, RULE_statementWhile = 20, RULE_statementAssign = 21, 
 		RULE_statementAssignArray = 22, RULE_statementPrint = 23, RULE_statementPrintln = 24, 
-		RULE_statementMethod = 25, RULE_statementTernary = 26, RULE_statemantIncremnt = 27, 
-		RULE_statemantDecremnt = 28, RULE_statementFor = 29, RULE_statementReturn = 30, 
+		RULE_statementMethod = 25, RULE_statementTernary = 26, RULE_statementIncrement = 27, 
+		RULE_statementDecrement = 28, RULE_statementFor = 29, RULE_statementReturn = 30, 
 		RULE_expression = 31, RULE_level1 = 32, RULE_level2 = 33, RULE_level3 = 34, 
 		RULE_level4 = 35, RULE_level5 = 36, RULE_expressionUnaryMinus = 37, RULE_expressionNegation = 38, 
 		RULE_expressionNewObject = 39, RULE_expressionNewArray = 40, RULE_expressionIdentifier = 41, 
 		RULE_expressionArrayAccess = 42, RULE_expressionParentheses = 43, RULE_expressionConstantTrue = 44, 
 		RULE_expressionConstantFalse = 45, RULE_expressionConstantInteger = 46, 
-		RULE_expressionConstantString = 47, RULE_expressionMethodCall = 48, RULE_expressionPostIncremnt = 49, 
-		RULE_expressionPreIncremnt = 50, RULE_expressionPostDecrement = 51, RULE_expressionPreIncrement = 52, 
+		RULE_expressionConstantString = 47, RULE_expressionMethodCall = 48, RULE_expressionPostIncrement = 49, 
+		RULE_expressionPreIncrement = 50, RULE_expressionPostDecrement = 51, RULE_expressionPreDecrement = 52, 
 		RULE_identifier = 53, RULE_identifierIdentifier = 54, RULE_identifierId = 55, 
 		RULE_idThis = 56, RULE_idIDENT = 57;
 	public static final String[] ruleNames = {
@@ -58,14 +57,14 @@ public class MiniJavaParser extends Parser {
 		"typeBasic", "typeArray", "typeBoolean", "typeInt", "typeClass", "typeChar", 
 		"methodDeclaration", "procType", "typeVoid", "statement", "statementIf", 
 		"statementWhile", "statementAssign", "statementAssignArray", "statementPrint", 
-		"statementPrintln", "statementMethod", "statementTernary", "statemantIncremnt", 
-		"statemantDecremnt", "statementFor", "statementReturn", "expression", 
+		"statementPrintln", "statementMethod", "statementTernary", "statementIncrement", 
+		"statementDecrement", "statementFor", "statementReturn", "expression", 
 		"level1", "level2", "level3", "level4", "level5", "expressionUnaryMinus", 
 		"expressionNegation", "expressionNewObject", "expressionNewArray", "expressionIdentifier", 
 		"expressionArrayAccess", "expressionParentheses", "expressionConstantTrue", 
 		"expressionConstantFalse", "expressionConstantInteger", "expressionConstantString", 
-		"expressionMethodCall", "expressionPostIncremnt", "expressionPreIncremnt", 
-		"expressionPostDecrement", "expressionPreIncrement", "identifier", "identifierIdentifier", 
+		"expressionMethodCall", "expressionPostIncrement", "expressionPreIncrement", 
+		"expressionPostDecrement", "expressionPreDecrement", "identifier", "identifierIdentifier", 
 		"identifierId", "idThis", "idIDENT"
 	};
 
@@ -1329,6 +1328,9 @@ public class MiniJavaParser extends Parser {
 		public StatementPrintlnContext statementPrintln() {
 			return getRuleContext(StatementPrintlnContext.class,0);
 		}
+		public StatementDecrementContext statementDecrement() {
+			return getRuleContext(StatementDecrementContext.class,0);
+		}
 		public StatementMethodContext statementMethod() {
 			return getRuleContext(StatementMethodContext.class,0);
 		}
@@ -1338,11 +1340,11 @@ public class MiniJavaParser extends Parser {
 		public StatementReturnContext statementReturn() {
 			return getRuleContext(StatementReturnContext.class,0);
 		}
+		public StatementIncrementContext statementIncrement() {
+			return getRuleContext(StatementIncrementContext.class,0);
+		}
 		public StatementIfContext statementIf() {
 			return getRuleContext(StatementIfContext.class,0);
-		}
-		public StatemantDecremntContext statemantDecremnt() {
-			return getRuleContext(StatemantDecremntContext.class,0);
 		}
 		public StatementAssignContext statementAssign() {
 			return getRuleContext(StatementAssignContext.class,0);
@@ -1361,9 +1363,6 @@ public class MiniJavaParser extends Parser {
 		}
 		public StatementTernaryContext statementTernary() {
 			return getRuleContext(StatementTernaryContext.class,0);
-		}
-		public StatemantIncremntContext statemantIncremnt() {
-			return getRuleContext(StatemantIncremntContext.class,0);
 		}
 		public StatementContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -1463,14 +1462,14 @@ public class MiniJavaParser extends Parser {
 			case 11:
 				enterOuterAlt(_localctx, 11);
 				{
-				setState(273); statemantIncremnt();
+				setState(273); statementIncrement();
 				}
 				break;
 
 			case 12:
 				enterOuterAlt(_localctx, 12);
 				{
-				setState(274); statemantDecremnt();
+				setState(274); statementDecrement();
 				}
 				break;
 
@@ -1854,6 +1853,7 @@ public class MiniJavaParser extends Parser {
 	}
 
 	public static class StatementMethodContext extends ParserRuleContext {
+		public ExpressionMethodCallContext ex_method;
 		public TerminalNode SEMICOLON() { return getToken(MiniJavaParser.SEMICOLON, 0); }
 		public ExpressionMethodCallContext expressionMethodCall() {
 			return getRuleContext(ExpressionMethodCallContext.class,0);
@@ -1883,7 +1883,7 @@ public class MiniJavaParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(325); expressionMethodCall();
+			setState(325); ((StatementMethodContext)_localctx).ex_method = expressionMethodCall();
 			setState(326); match(SEMICOLON);
 			}
 		}
@@ -2002,36 +2002,38 @@ public class MiniJavaParser extends Parser {
 		return _localctx;
 	}
 
-	public static class StatemantIncremntContext extends ParserRuleContext {
+	public static class StatementIncrementContext extends ParserRuleContext {
+		public ExpressionPostIncrementContext ex_post_in;
+		public ExpressionPreIncrementContext ex_pre_in;
 		public TerminalNode SEMICOLON() { return getToken(MiniJavaParser.SEMICOLON, 0); }
-		public ExpressionPostIncremntContext expressionPostIncremnt() {
-			return getRuleContext(ExpressionPostIncremntContext.class,0);
+		public ExpressionPostIncrementContext expressionPostIncrement() {
+			return getRuleContext(ExpressionPostIncrementContext.class,0);
 		}
-		public ExpressionPreIncremntContext expressionPreIncremnt() {
-			return getRuleContext(ExpressionPreIncremntContext.class,0);
+		public ExpressionPreIncrementContext expressionPreIncrement() {
+			return getRuleContext(ExpressionPreIncrementContext.class,0);
 		}
-		public StatemantIncremntContext(ParserRuleContext parent, int invokingState) {
+		public StatementIncrementContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
-		@Override public int getRuleIndex() { return RULE_statemantIncremnt; }
+		@Override public int getRuleIndex() { return RULE_statementIncrement; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof MiniJavaListener ) ((MiniJavaListener)listener).enterStatemantIncremnt(this);
+			if ( listener instanceof MiniJavaListener ) ((MiniJavaListener)listener).enterStatementIncrement(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof MiniJavaListener ) ((MiniJavaListener)listener).exitStatemantIncremnt(this);
+			if ( listener instanceof MiniJavaListener ) ((MiniJavaListener)listener).exitStatementIncrement(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof MiniJavaVisitor ) return ((MiniJavaVisitor<? extends T>)visitor).visitStatemantIncremnt(this);
+			if ( visitor instanceof MiniJavaVisitor ) return ((MiniJavaVisitor<? extends T>)visitor).visitStatementIncrement(this);
 			else return visitor.visitChildren(this);
 		}
 	}
 
-	public final StatemantIncremntContext statemantIncremnt() throws RecognitionException {
-		StatemantIncremntContext _localctx = new StatemantIncremntContext(_ctx, getState());
-		enterRule(_localctx, 54, RULE_statemantIncremnt);
+	public final StatementIncrementContext statementIncrement() throws RecognitionException {
+		StatementIncrementContext _localctx = new StatementIncrementContext(_ctx, getState());
+		enterRule(_localctx, 54, RULE_statementIncrement);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
@@ -2040,12 +2042,12 @@ public class MiniJavaParser extends Parser {
 			case THIS:
 			case IDENT:
 				{
-				setState(346); expressionPostIncremnt();
+				setState(346); ((StatementIncrementContext)_localctx).ex_post_in = expressionPostIncrement();
 				}
 				break;
 			case INCREMENT:
 				{
-				setState(347); expressionPreIncremnt();
+				setState(347); ((StatementIncrementContext)_localctx).ex_pre_in = expressionPreIncrement();
 				}
 				break;
 			default:
@@ -2065,49 +2067,56 @@ public class MiniJavaParser extends Parser {
 		return _localctx;
 	}
 
-	public static class StatemantDecremntContext extends ParserRuleContext {
+	public static class StatementDecrementContext extends ParserRuleContext {
+		public ExpressionPostDecrementContext ex_post_de;
+		public ExpressionPreDecrementContext ex_pre_de;
 		public TerminalNode SEMICOLON() { return getToken(MiniJavaParser.SEMICOLON, 0); }
+		public ExpressionPreDecrementContext expressionPreDecrement() {
+			return getRuleContext(ExpressionPreDecrementContext.class,0);
+		}
 		public ExpressionPostDecrementContext expressionPostDecrement() {
 			return getRuleContext(ExpressionPostDecrementContext.class,0);
 		}
-		public StatemantDecremntContext(ParserRuleContext parent, int invokingState) {
+		public StatementDecrementContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
-		@Override public int getRuleIndex() { return RULE_statemantDecremnt; }
+		@Override public int getRuleIndex() { return RULE_statementDecrement; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof MiniJavaListener ) ((MiniJavaListener)listener).enterStatemantDecremnt(this);
+			if ( listener instanceof MiniJavaListener ) ((MiniJavaListener)listener).enterStatementDecrement(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof MiniJavaListener ) ((MiniJavaListener)listener).exitStatemantDecremnt(this);
+			if ( listener instanceof MiniJavaListener ) ((MiniJavaListener)listener).exitStatementDecrement(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof MiniJavaVisitor ) return ((MiniJavaVisitor<? extends T>)visitor).visitStatemantDecremnt(this);
+			if ( visitor instanceof MiniJavaVisitor ) return ((MiniJavaVisitor<? extends T>)visitor).visitStatementDecrement(this);
 			else return visitor.visitChildren(this);
 		}
 	}
 
-	public final StatemantDecremntContext statemantDecremnt() throws RecognitionException {
-		StatemantDecremntContext _localctx = new StatemantDecremntContext(_ctx, getState());
-		enterRule(_localctx, 56, RULE_statemantDecremnt);
+	public final StatementDecrementContext statementDecrement() throws RecognitionException {
+		StatementDecrementContext _localctx = new StatementDecrementContext(_ctx, getState());
+		enterRule(_localctx, 56, RULE_statementDecrement);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
 			setState(354);
-			switch ( getInterpreter().adaptivePredict(_input,27,_ctx) ) {
-			case 1:
+			switch (_input.LA(1)) {
+			case THIS:
+			case IDENT:
 				{
-				setState(352); expressionPostDecrement();
+				setState(352); ((StatementDecrementContext)_localctx).ex_post_de = expressionPostDecrement();
 				}
 				break;
-
-			case 2:
+			case DECREMENT:
 				{
-				setState(353); expressionPostDecrement();
+				setState(353); ((StatementDecrementContext)_localctx).ex_pre_de = expressionPreDecrement();
 				}
 				break;
+			default:
+				throw new NoViableAltException(this);
 			}
 			setState(356); match(SEMICOLON);
 			}
@@ -2124,6 +2133,9 @@ public class MiniJavaParser extends Parser {
 	}
 
 	public static class StatementForContext extends ParserRuleContext {
+		public ExpressionContext condition;
+		public ExpressionContext expr_a;
+		public StatementContext forBlock;
 		public TerminalNode SEMICOLON() { return getToken(MiniJavaParser.SEMICOLON, 0); }
 		public VarDeclarationContext varDeclaration() {
 			return getRuleContext(VarDeclarationContext.class,0);
@@ -2193,11 +2205,11 @@ public class MiniJavaParser extends Parser {
 				}
 				break;
 			}
-			setState(365); expression();
+			setState(365); ((StatementForContext)_localctx).condition = expression();
 			setState(366); match(SEMICOLON);
-			setState(367); expression();
+			setState(367); ((StatementForContext)_localctx).expr_a = expression();
 			setState(368); match(ROUNDCLOSE);
-			setState(369); statement();
+			setState(369); ((StatementForContext)_localctx).forBlock = statement();
 			}
 		}
 		catch (RecognitionException re) {
@@ -2479,7 +2491,7 @@ public class MiniJavaParser extends Parser {
 		public Token PLUS;
 		public List<Token> operator = new ArrayList<Token>();
 		public Token MINUS;
-		public Token _tset783;
+		public Token _tset799;
 		public Level4Context level4;
 		public List<Level4Context> tail = new ArrayList<Level4Context>();
 		public TerminalNode MINUS(int i) {
@@ -2530,13 +2542,13 @@ public class MiniJavaParser extends Parser {
 				{
 				{
 				setState(402);
-				((Level3Context)_localctx)._tset783 = _input.LT(1);
+				((Level3Context)_localctx)._tset799 = _input.LT(1);
 				_la = _input.LA(1);
 				if ( !(_la==MINUS || _la==PLUS) ) {
-					((Level3Context)_localctx)._tset783 = (Token)_errHandler.recoverInline(this);
+					((Level3Context)_localctx)._tset799 = (Token)_errHandler.recoverInline(this);
 				}
 				consume();
-				((Level3Context)_localctx).operator.add(((Level3Context)_localctx)._tset783);
+				((Level3Context)_localctx).operator.add(((Level3Context)_localctx)._tset799);
 				setState(403); ((Level3Context)_localctx).level4 = level4();
 				((Level3Context)_localctx).tail.add(((Level3Context)_localctx).level4);
 				}
@@ -2640,8 +2652,11 @@ public class MiniJavaParser extends Parser {
 		public ExpressionParenthesesContext expressionParentheses() {
 			return getRuleContext(ExpressionParenthesesContext.class,0);
 		}
-		public ExpressionPostIncremntContext expressionPostIncremnt() {
-			return getRuleContext(ExpressionPostIncremntContext.class,0);
+		public ExpressionPostIncrementContext expressionPostIncrement() {
+			return getRuleContext(ExpressionPostIncrementContext.class,0);
+		}
+		public ExpressionPreDecrementContext expressionPreDecrement() {
+			return getRuleContext(ExpressionPreDecrementContext.class,0);
 		}
 		public ExpressionNewObjectContext expressionNewObject() {
 			return getRuleContext(ExpressionNewObjectContext.class,0);
@@ -2654,9 +2669,6 @@ public class MiniJavaParser extends Parser {
 		}
 		public ExpressionNewArrayContext expressionNewArray() {
 			return getRuleContext(ExpressionNewArrayContext.class,0);
-		}
-		public ExpressionPreIncremntContext expressionPreIncremnt() {
-			return getRuleContext(ExpressionPreIncremntContext.class,0);
 		}
 		public ExpressionArrayAccessContext expressionArrayAccess() {
 			return getRuleContext(ExpressionArrayAccessContext.class,0);
@@ -2788,14 +2800,14 @@ public class MiniJavaParser extends Parser {
 			case 13:
 				enterOuterAlt(_localctx, 13);
 				{
-				setState(429); expressionPostIncremnt();
+				setState(429); expressionPostIncrement();
 				}
 				break;
 
 			case 14:
 				enterOuterAlt(_localctx, 14);
 				{
-				setState(430); expressionPreIncremnt();
+				setState(430); expressionPreIncrement();
 				}
 				break;
 
@@ -2809,7 +2821,7 @@ public class MiniJavaParser extends Parser {
 			case 16:
 				enterOuterAlt(_localctx, 16);
 				{
-				setState(432); expressionPreIncrement();
+				setState(432); expressionPreDecrement();
 				}
 				break;
 			}
@@ -3425,37 +3437,38 @@ public class MiniJavaParser extends Parser {
 		return _localctx;
 	}
 
-	public static class ExpressionPostIncremntContext extends ParserRuleContext {
+	public static class ExpressionPostIncrementContext extends ParserRuleContext {
+		public IdentifierContext ident;
+		public TerminalNode INCREMENT() { return getToken(MiniJavaParser.INCREMENT, 0); }
 		public IdentifierContext identifier() {
 			return getRuleContext(IdentifierContext.class,0);
 		}
-		public TerminalNode INCREMENT() { return getToken(MiniJavaParser.INCREMENT, 0); }
-		public ExpressionPostIncremntContext(ParserRuleContext parent, int invokingState) {
+		public ExpressionPostIncrementContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
-		@Override public int getRuleIndex() { return RULE_expressionPostIncremnt; }
+		@Override public int getRuleIndex() { return RULE_expressionPostIncrement; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof MiniJavaListener ) ((MiniJavaListener)listener).enterExpressionPostIncremnt(this);
+			if ( listener instanceof MiniJavaListener ) ((MiniJavaListener)listener).enterExpressionPostIncrement(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof MiniJavaListener ) ((MiniJavaListener)listener).exitExpressionPostIncremnt(this);
+			if ( listener instanceof MiniJavaListener ) ((MiniJavaListener)listener).exitExpressionPostIncrement(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof MiniJavaVisitor ) return ((MiniJavaVisitor<? extends T>)visitor).visitExpressionPostIncremnt(this);
+			if ( visitor instanceof MiniJavaVisitor ) return ((MiniJavaVisitor<? extends T>)visitor).visitExpressionPostIncrement(this);
 			else return visitor.visitChildren(this);
 		}
 	}
 
-	public final ExpressionPostIncremntContext expressionPostIncremnt() throws RecognitionException {
-		ExpressionPostIncremntContext _localctx = new ExpressionPostIncremntContext(_ctx, getState());
-		enterRule(_localctx, 98, RULE_expressionPostIncremnt);
+	public final ExpressionPostIncrementContext expressionPostIncrement() throws RecognitionException {
+		ExpressionPostIncrementContext _localctx = new ExpressionPostIncrementContext(_ctx, getState());
+		enterRule(_localctx, 98, RULE_expressionPostIncrement);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(490); identifier();
+			setState(490); ((ExpressionPostIncrementContext)_localctx).ident = identifier();
 			setState(491); match(INCREMENT);
 			}
 		}
@@ -3470,38 +3483,39 @@ public class MiniJavaParser extends Parser {
 		return _localctx;
 	}
 
-	public static class ExpressionPreIncremntContext extends ParserRuleContext {
+	public static class ExpressionPreIncrementContext extends ParserRuleContext {
+		public IdentifierContext ident;
 		public TerminalNode INCREMENT() { return getToken(MiniJavaParser.INCREMENT, 0); }
 		public IdentifierContext identifier() {
 			return getRuleContext(IdentifierContext.class,0);
 		}
-		public ExpressionPreIncremntContext(ParserRuleContext parent, int invokingState) {
+		public ExpressionPreIncrementContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
-		@Override public int getRuleIndex() { return RULE_expressionPreIncremnt; }
+		@Override public int getRuleIndex() { return RULE_expressionPreIncrement; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof MiniJavaListener ) ((MiniJavaListener)listener).enterExpressionPreIncremnt(this);
+			if ( listener instanceof MiniJavaListener ) ((MiniJavaListener)listener).enterExpressionPreIncrement(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof MiniJavaListener ) ((MiniJavaListener)listener).exitExpressionPreIncremnt(this);
+			if ( listener instanceof MiniJavaListener ) ((MiniJavaListener)listener).exitExpressionPreIncrement(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof MiniJavaVisitor ) return ((MiniJavaVisitor<? extends T>)visitor).visitExpressionPreIncremnt(this);
+			if ( visitor instanceof MiniJavaVisitor ) return ((MiniJavaVisitor<? extends T>)visitor).visitExpressionPreIncrement(this);
 			else return visitor.visitChildren(this);
 		}
 	}
 
-	public final ExpressionPreIncremntContext expressionPreIncremnt() throws RecognitionException {
-		ExpressionPreIncremntContext _localctx = new ExpressionPreIncremntContext(_ctx, getState());
-		enterRule(_localctx, 100, RULE_expressionPreIncremnt);
+	public final ExpressionPreIncrementContext expressionPreIncrement() throws RecognitionException {
+		ExpressionPreIncrementContext _localctx = new ExpressionPreIncrementContext(_ctx, getState());
+		enterRule(_localctx, 100, RULE_expressionPreIncrement);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
 			setState(493); match(INCREMENT);
-			setState(494); identifier();
+			setState(494); ((ExpressionPreIncrementContext)_localctx).ident = identifier();
 			}
 		}
 		catch (RecognitionException re) {
@@ -3516,6 +3530,7 @@ public class MiniJavaParser extends Parser {
 	}
 
 	public static class ExpressionPostDecrementContext extends ParserRuleContext {
+		public IdentifierContext ident;
 		public IdentifierContext identifier() {
 			return getRuleContext(IdentifierContext.class,0);
 		}
@@ -3545,7 +3560,7 @@ public class MiniJavaParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(496); identifier();
+			setState(496); ((ExpressionPostDecrementContext)_localctx).ident = identifier();
 			setState(497); match(DECREMENT);
 			}
 		}
@@ -3560,38 +3575,39 @@ public class MiniJavaParser extends Parser {
 		return _localctx;
 	}
 
-	public static class ExpressionPreIncrementContext extends ParserRuleContext {
+	public static class ExpressionPreDecrementContext extends ParserRuleContext {
+		public IdentifierContext ident;
 		public IdentifierContext identifier() {
 			return getRuleContext(IdentifierContext.class,0);
 		}
 		public TerminalNode DECREMENT() { return getToken(MiniJavaParser.DECREMENT, 0); }
-		public ExpressionPreIncrementContext(ParserRuleContext parent, int invokingState) {
+		public ExpressionPreDecrementContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
-		@Override public int getRuleIndex() { return RULE_expressionPreIncrement; }
+		@Override public int getRuleIndex() { return RULE_expressionPreDecrement; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof MiniJavaListener ) ((MiniJavaListener)listener).enterExpressionPreIncrement(this);
+			if ( listener instanceof MiniJavaListener ) ((MiniJavaListener)listener).enterExpressionPreDecrement(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof MiniJavaListener ) ((MiniJavaListener)listener).exitExpressionPreIncrement(this);
+			if ( listener instanceof MiniJavaListener ) ((MiniJavaListener)listener).exitExpressionPreDecrement(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof MiniJavaVisitor ) return ((MiniJavaVisitor<? extends T>)visitor).visitExpressionPreIncrement(this);
+			if ( visitor instanceof MiniJavaVisitor ) return ((MiniJavaVisitor<? extends T>)visitor).visitExpressionPreDecrement(this);
 			else return visitor.visitChildren(this);
 		}
 	}
 
-	public final ExpressionPreIncrementContext expressionPreIncrement() throws RecognitionException {
-		ExpressionPreIncrementContext _localctx = new ExpressionPreIncrementContext(_ctx, getState());
-		enterRule(_localctx, 104, RULE_expressionPreIncrement);
+	public final ExpressionPreDecrementContext expressionPreDecrement() throws RecognitionException {
+		ExpressionPreDecrementContext _localctx = new ExpressionPreDecrementContext(_ctx, getState());
+		enterRule(_localctx, 104, RULE_expressionPreDecrement);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
 			setState(499); match(DECREMENT);
-			setState(500); identifier();
+			setState(500); ((ExpressionPreDecrementContext)_localctx).ident = identifier();
 			}
 		}
 		catch (RecognitionException re) {
@@ -3990,7 +4006,7 @@ public class MiniJavaParser extends Parser {
 		"\3\2\2\2\u0159\u015a\3\2\2\2\u015a\u015b\7\n\2\2\u015b\67\3\2\2\2\u015c"+
 		"\u015f\5d\63\2\u015d\u015f\5f\64\2\u015e\u015c\3\2\2\2\u015e\u015d\3\2"+
 		"\2\2\u015f\u0160\3\2\2\2\u0160\u0161\7\n\2\2\u01619\3\2\2\2\u0162\u0165"+
-		"\5h\65\2\u0163\u0165\5h\65\2\u0164\u0162\3\2\2\2\u0164\u0163\3\2\2\2\u0165"+
+		"\5h\65\2\u0163\u0165\5j\66\2\u0164\u0162\3\2\2\2\u0164\u0163\3\2\2\2\u0165"+
 		"\u0166\3\2\2\2\u0166\u0167\7\n\2\2\u0167;\3\2\2\2\u0168\u0169\7\'\2\2"+
 		"\u0169\u016d\7\20\2\2\u016a\u016e\5\n\6\2\u016b\u016e\5\f\7\2\u016c\u016e"+
 		"\5\16\b\2\u016d\u016a\3\2\2\2\u016d\u016b\3\2\2\2\u016d\u016c\3\2\2\2"+

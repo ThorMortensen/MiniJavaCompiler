@@ -6,7 +6,6 @@ import org.antlr.v4.runtime.misc.NotNull;
 import org.antlr.v4.runtime.tree.ErrorNode;
 import org.antlr.v4.runtime.tree.TerminalNode;
 
-
 /**
  * This class provides an empty implementation of {@link MiniJavaListener},
  * which can be extended to create a listener which only needs to handle a subset
@@ -57,19 +56,6 @@ public class MiniJavaBaseListener implements MiniJavaListener {
 	 * <p/>
 	 * The default implementation does nothing.
 	 */
-	@Override public void enterExpressionPostIncremnt(@NotNull MiniJavaParser.ExpressionPostIncremntContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 * <p/>
-	 * The default implementation does nothing.
-	 */
-	@Override public void exitExpressionPostIncremnt(@NotNull MiniJavaParser.ExpressionPostIncremntContext ctx) { }
-
-	/**
-	 * {@inheritDoc}
-	 * <p/>
-	 * The default implementation does nothing.
-	 */
 	@Override public void enterProgram(@NotNull MiniJavaParser.ProgramContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -77,19 +63,6 @@ public class MiniJavaBaseListener implements MiniJavaListener {
 	 * The default implementation does nothing.
 	 */
 	@Override public void exitProgram(@NotNull MiniJavaParser.ProgramContext ctx) { }
-
-	/**
-	 * {@inheritDoc}
-	 * <p/>
-	 * The default implementation does nothing.
-	 */
-	@Override public void enterStatemantDecremnt(@NotNull MiniJavaParser.StatemantDecremntContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 * <p/>
-	 * The default implementation does nothing.
-	 */
-	@Override public void exitStatemantDecremnt(@NotNull MiniJavaParser.StatemantDecremntContext ctx) { }
 
 	/**
 	 * {@inheritDoc}
@@ -142,6 +115,19 @@ public class MiniJavaBaseListener implements MiniJavaListener {
 	 * The default implementation does nothing.
 	 */
 	@Override public void exitStatementAssignArray(@NotNull MiniJavaParser.StatementAssignArrayContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterStatementDecrement(@NotNull MiniJavaParser.StatementDecrementContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitStatementDecrement(@NotNull MiniJavaParser.StatementDecrementContext ctx) { }
 
 	/**
 	 * {@inheritDoc}
@@ -460,6 +446,19 @@ public class MiniJavaBaseListener implements MiniJavaListener {
 	 * <p/>
 	 * The default implementation does nothing.
 	 */
+	@Override public void enterExpressionPreDecrement(@NotNull MiniJavaParser.ExpressionPreDecrementContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitExpressionPreDecrement(@NotNull MiniJavaParser.ExpressionPreDecrementContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
 	@Override public void enterMethodDeclaration(@NotNull MiniJavaParser.MethodDeclarationContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -545,6 +544,19 @@ public class MiniJavaBaseListener implements MiniJavaListener {
 	 * The default implementation does nothing.
 	 */
 	@Override public void exitClassDeclaration(@NotNull MiniJavaParser.ClassDeclarationContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterExpressionPostIncrement(@NotNull MiniJavaParser.ExpressionPostIncrementContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitExpressionPostIncrement(@NotNull MiniJavaParser.ExpressionPostIncrementContext ctx) { }
 
 	/**
 	 * {@inheritDoc}
@@ -642,32 +654,6 @@ public class MiniJavaBaseListener implements MiniJavaListener {
 	 * <p/>
 	 * The default implementation does nothing.
 	 */
-	@Override public void enterExpressionPreIncremnt(@NotNull MiniJavaParser.ExpressionPreIncremntContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 * <p/>
-	 * The default implementation does nothing.
-	 */
-	@Override public void exitExpressionPreIncremnt(@NotNull MiniJavaParser.ExpressionPreIncremntContext ctx) { }
-
-	/**
-	 * {@inheritDoc}
-	 * <p/>
-	 * The default implementation does nothing.
-	 */
-	@Override public void enterStatemantIncremnt(@NotNull MiniJavaParser.StatemantIncremntContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 * <p/>
-	 * The default implementation does nothing.
-	 */
-	@Override public void exitStatemantIncremnt(@NotNull MiniJavaParser.StatemantIncremntContext ctx) { }
-
-	/**
-	 * {@inheritDoc}
-	 * <p/>
-	 * The default implementation does nothing.
-	 */
 	@Override public void enterTypeArray(@NotNull MiniJavaParser.TypeArrayContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -714,6 +700,19 @@ public class MiniJavaBaseListener implements MiniJavaListener {
 	 * The default implementation does nothing.
 	 */
 	@Override public void exitExpressionParentheses(@NotNull MiniJavaParser.ExpressionParenthesesContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterStatementIncrement(@NotNull MiniJavaParser.StatementIncrementContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitStatementIncrement(@NotNull MiniJavaParser.StatementIncrementContext ctx) { }
 
 	/**
 	 * {@inheritDoc}

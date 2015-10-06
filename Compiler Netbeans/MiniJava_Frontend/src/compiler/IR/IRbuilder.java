@@ -577,12 +577,7 @@ public class IRbuilder extends AbstractParseTreeVisitor<IR> implements MiniJavaV
     }
 
     @Override
-    public IR visitExpressionPostIncremnt(ExpressionPostIncremntContext ctx) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public IR visitStatemantDecremnt(StatemantDecremntContext ctx) {
+    public IR visitStatementDecrement(StatementDecrementContext ctx) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -602,6 +597,16 @@ public class IRbuilder extends AbstractParseTreeVisitor<IR> implements MiniJavaV
     }
 
     @Override
+    public IR visitExpressionPreDecrement(ExpressionPreDecrementContext ctx) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public IR visitExpressionPostIncrement(ExpressionPostIncrementContext ctx) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
     public IR visitVarDeclarationAssign(VarDeclarationAssignContext ctx) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
@@ -612,12 +617,7 @@ public class IRbuilder extends AbstractParseTreeVisitor<IR> implements MiniJavaV
     }
 
     @Override
-    public IR visitExpressionPreIncremnt(ExpressionPreIncremntContext ctx) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public IR visitStatemantIncremnt(StatemantIncremntContext ctx) {
+    public IR visitStatementIncrement(StatementIncrementContext ctx) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -625,6 +625,7 @@ public class IRbuilder extends AbstractParseTreeVisitor<IR> implements MiniJavaV
     public IR visitExpressionPostDecrement(ExpressionPostDecrementContext ctx) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
 
    
 }
