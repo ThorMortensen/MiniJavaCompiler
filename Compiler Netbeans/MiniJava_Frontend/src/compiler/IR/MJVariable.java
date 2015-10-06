@@ -2,6 +2,10 @@ package compiler.IR;
 
 public class MJVariable extends IR {
 
+    public MJExpression[] getExp() {
+        return exp;
+    }
+
 	private MJType type;
 	private String name;
         private MJExpression[] exp;

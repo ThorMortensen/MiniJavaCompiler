@@ -7,7 +7,7 @@ package compiler.IR;
 
 /**
  *
- * @author NannaJosefine
+ * 
  */
 public class MJPostDecrement extends MJExpression{
     

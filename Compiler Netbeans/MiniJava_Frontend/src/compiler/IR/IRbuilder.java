@@ -578,14 +578,6 @@ public class IRbuilder extends AbstractParseTreeVisitor<IR> implements MiniJavaV
     }
 
     @Override
-    public IR visitStatementDecrement(StatementDecrementContext ctx) {
-        if (ctx.ex_post_de != null){
-            return visitExpressionPostDecrement(ctx.ex_post_de);
-        }else 
-            return visitExpressionPreDecrement(ctx.ex_pre_de);
-    }
-
-    @Override
     public IR visitTypeChar(TypeCharContext ctx) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
@@ -642,18 +634,26 @@ public class IRbuilder extends AbstractParseTreeVisitor<IR> implements MiniJavaV
     }
 
     @Override
-    public IR visitStatementFor(StatementForContext ctx) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public MJStatement visitStatementFor(StatementForContext ctx) {
+        return new MJfor(visitVarDeclarationAssign(ctx.var),visitExpression(ctx.condition),visitExpression(ctx.expr),visitStatement(ctx.forBlock));
     }
 
     @Override
-    public IR visitStatementIncrement(StatementIncrementContext ctx) {
+    public MJStatement visitStatementIncrement(StatementIncrementContext ctx) {
         if (ctx.ex_post_in != null){
-            return visitExpressionPostIncrement(ctx.ex_post_in);
+            return new MJStatementIncrement(visitExpressionPostIncrement(ctx.ex_post_in));
         }else 
-            return visitExpressionPreIncrement(ctx.ex_pre_in);
+            return new MJStatementIncrement(visitExpressionPreIncrement(ctx.ex_pre_in));
     }
 
+        @Override
+    public MJStatement visitStatementDecrement(StatementDecrementContext ctx) {
+        if (ctx.ex_post_de != null){
+            return new MJStatementDecrement(visitExpressionPostDecrement(ctx.ex_post_de));
+        }else 
+            return new MJStatementDecrement(visitExpressionPreDecrement(ctx.ex_pre_de));
+    }
+    
     @Override
     public MJExpression visitExpressionPostDecrement(ExpressionPostDecrementContext ctx) {
         MJIdentifierClass ident= visitIdentifier(ctx.ident);

@@ -21,6 +21,10 @@ public abstract class IRElementVisitor<T> {
 		if (e instanceof MJPrintln) return visitStatement((MJPrintln)e);
 		if (e instanceof MJMethodCallStmt) return visitStatement((MJMethodCallStmt)e);
 		if (e instanceof MJReturn) return visitStatement((MJReturn)e);
+		if (e instanceof MJfor) return visitStatement((MJfor)e);
+		if (e instanceof MJStatementDecrement) return visitStatement((MJStatementDecrement)e);
+		if (e instanceof MJStatementIncrement) return visitStatement((MJStatementIncrement)e);
+                if (e instanceof MJTernary) return visitStatement((MJTernary)e);
 		throw new VisitorException("unknown statement class "+e.getClass().getName());
 	}
 	
@@ -33,6 +37,11 @@ public abstract class IRElementVisitor<T> {
 	public abstract T visitStatement(MJPrintln e) throws VisitorException;
 	public abstract T visitStatement(MJMethodCallStmt e) throws VisitorException;
 	public abstract T visitStatement(MJReturn e) throws VisitorException;
+        
+        public abstract T visitStatement(MJfor e) throws VisitorException;
+	public abstract T visitStatement(MJStatementDecrement e) throws VisitorException;
+	public abstract T visitStatement(MJStatementIncrement e) throws VisitorException;
+	public abstract T visitStatement(MJTernary e) throws VisitorException;
 
 	public T visitExpression(MJExpression e) throws VisitorException {
 		if (e instanceof MJAnd) return visitExpression((MJAnd)e);
@@ -54,7 +63,11 @@ public abstract class IRElementVisitor<T> {
 		if (e instanceof MJSelector) return visitExpression((MJSelector)e);
 		if (e instanceof MJIdentifier) return visitExpression((MJIdentifier)e);
 		if (e instanceof MJNoExpression) return visitExpression((MJNoExpression)e);
-		
+                if (e instanceof MJPostDecrement) return visitExpression((MJPostDecrement)e);
+                if (e instanceof MJPostIncrement) return visitExpression((MJPostIncrement)e);
+                if (e instanceof MJPreDecrement) return visitExpression((MJPreDecrement)e);
+                if (e instanceof MJPreIncrement) return visitExpression((MJPreIncrement)e);
+
 		throw new VisitorException("unknown expression class "+e.getClass().getName());
 	}
 	public abstract T visitExpression(MJAnd e) throws VisitorException;
@@ -76,6 +89,11 @@ public abstract class IRElementVisitor<T> {
 	public abstract T visitExpression(MJIdentifier e) throws VisitorException;
 	public abstract T visitExpression(MJArray e) throws VisitorException;
 	public abstract T visitExpression(MJSelector e) throws VisitorException;
+        
+        public abstract T visitExpression(MJPostDecrement e) throws VisitorException;
+        public abstract T visitExpression(MJPostIncrement e) throws VisitorException;
+        public abstract T visitExpression(MJPreDecrement e) throws VisitorException;
+        public abstract T visitExpression(MJPreIncrement e) throws VisitorException;
 	
 	public abstract T visitExpression(MJNoExpression e) throws VisitorException;
 	

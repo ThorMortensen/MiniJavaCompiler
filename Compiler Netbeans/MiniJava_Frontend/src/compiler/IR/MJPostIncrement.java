@@ -7,7 +7,7 @@ package compiler.IR;
 
 /**
  *
- * @author NannaJosefine
+ *
  */
 public class MJPostIncrement extends MJExpression {
        private MJIdentifierClass ident;
