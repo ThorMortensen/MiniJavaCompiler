@@ -102,6 +102,18 @@ public class IRbuilder extends AbstractParseTreeVisitor<IR> implements MiniJavaV
         MJVariable x = visitVariable(ctx.var);
         return x;
     }
+    
+       public MJVariable visitarDeclarationStaticArray(MiniJavaParser.VarDeclarationStaticArrayContext ctx) {
+                MJVariable x = visitVariable(ctx.var);
+                int size = ctx.expression().size();
+                MJExpression[] exp = new MJExpression[size];
+                for (int i=0; i<size; i++) {
+                    exp[i] = visitExpression(ctx.expression(i));
+                }
+                
+                return new MJVariable(x.getType(), x.getName(), exp);
+            
+    }
 
 //	variable : type variableName=IDENT;
     public MJVariable visitVariable(MiniJavaParser.VariableContext ctx) {
