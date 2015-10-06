@@ -8,8 +8,6 @@ import org.antlr.v4.runtime.tree.AbstractParseTreeVisitor;
 import compiler.Frontend.*;
 import compiler.Frontend.MiniJavaParser.*;
 
-//dsælsddfdælksflfk
-//With libs
 public class IRbuilder extends AbstractParseTreeVisitor<IR> implements MiniJavaVisitor<IR> {
 
 //	program

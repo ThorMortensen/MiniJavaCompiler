@@ -29,7 +29,7 @@ package compiler.IR;
 //}
 /**
  *
- * @author Thor
+ * 
  */
 public class MJTernary extends MJStatement {
 
@@ -73,7 +73,7 @@ public class MJTernary extends MJStatement {
         } else if (lhs instanceof MJIdentifierClass ) {
             this.ident_a = (MJIdentifierClass) lhs;
         }else {
-            System.err.println("tanerry error Motherfucker");// new Exception("Wrong input asshole");
+            System.err.println("tanerry error ");// new Exception("Wrong input asshole");
             System.exit(0);
         }
 
@@ -82,7 +82,7 @@ public class MJTernary extends MJStatement {
         } else if (rhs instanceof MJIdentifierClass ) {
             this.ident_b = (MJIdentifierClass) rhs;
         }else {
-            System.err.println("tanerry error Motherfucker");// new Exception("Wrong input asshole");
+            System.err.println("tanerry error ");// new Exception("Wrong input asshole");
             System.exit(0);
         }
     }
