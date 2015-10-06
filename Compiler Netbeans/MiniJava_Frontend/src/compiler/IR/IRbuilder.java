@@ -578,7 +578,10 @@ public class IRbuilder extends AbstractParseTreeVisitor<IR> implements MiniJavaV
 
     @Override
     public IR visitStatementDecrement(StatementDecrementContext ctx) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if (ctx.ex_post_de != null){
+            return visitExpressionPostDecrement(ctx.ex_post_de);
+        }else 
+            return visitExpressionPreDecrement(ctx.ex_pre_de);
     }
 
     @Override
@@ -587,8 +590,9 @@ public class IRbuilder extends AbstractParseTreeVisitor<IR> implements MiniJavaV
     }
 
     @Override
-    public IR visitExpressionPreIncrement(ExpressionPreIncrementContext ctx) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public MJExpression visitExpressionPreIncrement(ExpressionPreIncrementContext ctx) {
+        MJIdentifierClass ident= visitIdentifier(ctx.ident);
+        return new MJPreIncrement(ident);
     }
 
     @Override
@@ -597,13 +601,15 @@ public class IRbuilder extends AbstractParseTreeVisitor<IR> implements MiniJavaV
     }
 
     @Override
-    public IR visitExpressionPreDecrement(ExpressionPreDecrementContext ctx) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public MJExpression visitExpressionPreDecrement(ExpressionPreDecrementContext ctx) {
+        MJIdentifierClass ident= visitIdentifier(ctx.ident);
+        return new MJPreDecrement(ident);    
     }
 
     @Override
-    public IR visitExpressionPostIncrement(ExpressionPostIncrementContext ctx) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public MJExpression visitExpressionPostIncrement(ExpressionPostIncrementContext ctx) {
+        MJIdentifierClass ident= visitIdentifier(ctx.ident);
+        return new MJPostIncrement(ident);
     }
 
     @Override
@@ -618,12 +624,16 @@ public class IRbuilder extends AbstractParseTreeVisitor<IR> implements MiniJavaV
 
     @Override
     public IR visitStatementIncrement(StatementIncrementContext ctx) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if (ctx.ex_post_in != null){
+            return visitExpressionPostIncrement(ctx.ex_post_in);
+        }else 
+            return visitExpressionPreIncrement(ctx.ex_pre_in);
     }
 
     @Override
-    public IR visitExpressionPostDecrement(ExpressionPostDecrementContext ctx) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public MJExpression visitExpressionPostDecrement(ExpressionPostDecrementContext ctx) {
+        MJIdentifierClass ident= visitIdentifier(ctx.ident);
+        return new MJPostDecrement(ident);    
     }
 
 
