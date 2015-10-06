@@ -25,7 +25,7 @@ public class MJVariable extends IR {
 		return name;
 	}
         
-        public MJExpression getExpression() {
+        public MJExpression[] getExpression() {
                 return exp;
         }
 	
