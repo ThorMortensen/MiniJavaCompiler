@@ -5,6 +5,8 @@ public class MJVariable extends IR {
 	private MJType type;
 	private String name;
         private MJExpression[] exp;
+        private MJExpression expr;
+        private MJStatement statem;
 	
 	public MJVariable(MJType t, String name) {
 		this.type = t;
@@ -15,6 +17,18 @@ public class MJVariable extends IR {
                 this.type = t;
                 this.name = name;
                 this.exp = exp;
+        }
+        
+        public MJVariable(MJType t, String name, MJExpression expr) {
+                this.type = t;
+                this.name = name;
+                this.expr = expr;
+        }
+        
+        public MJVariable(MJType t, String name, MJStatement statem) {
+                this.type = t;
+                this.name = name;
+                this.statem = statem;
         }
 
 	public MJType getType() {
@@ -27,6 +41,14 @@ public class MJVariable extends IR {
         
         public MJExpression[] getExpression() {
                 return exp;
+        }
+        
+        public MJExpression getExpr() {
+                return expr;
+        }
+        
+        public MJStatement getStatem() {
+                return statem;
         }
 	
 }
