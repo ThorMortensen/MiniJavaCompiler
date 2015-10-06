@@ -538,4 +538,49 @@ public class IRbuilder extends AbstractParseTreeVisitor<IR> implements MiniJavaV
 		return new MJNewArray(size);
 	}
 
+    @Override
+    public IR visitExpressionPostIncremnt(ExpressionPostIncremntContext ctx) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public IR visitStatemantDecremnt(StatemantDecremntContext ctx) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public IR visitTypeChar(TypeCharContext ctx) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public IR visitExpressionPreIncrement(ExpressionPreIncrementContext ctx) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public IR visitStatementFor(StatementForContext ctx) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public IR visitExpressionPreIncremnt(ExpressionPreIncremntContext ctx) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public IR visitStatemantIncremnt(StatemantIncremntContext ctx) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public IR visitStatementTernary(StatementTernaryContext ctx) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public IR visitExpressionPostDecrement(ExpressionPostDecrementContext ctx) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }
