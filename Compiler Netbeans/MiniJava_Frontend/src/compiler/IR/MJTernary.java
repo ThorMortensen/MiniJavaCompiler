@@ -31,22 +31,78 @@ package compiler.IR;
  *
  * @author Thor
  */
-public class MJTernary {
+public class MJTernary extends MJStatement {
 
-    public MJTernary() {
+    public MJIdentifierClass getIdent_opt() {
+        return ident_opt;
     }
 
-    public MJTernary(MJExpression condition, ) {
+    public MJExpression getExpr_a() {
+        return expr_a;
     }
 
-    private MJIdentifier ident_opt;
+    public MJExpression getExpr_b() {
+        return expr_b;
+    }
+
+    public MJIdentifierClass getIdent_a() {
+        return ident_a;
+    }
+
+    public MJIdentifierClass getIdent_b() {
+        return ident_b;
+    }
+
+    private MJIdentifierClass ident_opt;
     private MJExpression condition;
 
     private MJExpression expr_a;
     private MJExpression expr_b;
 
-    private MJIdentifier ident_a;
-    private MJIdentifier ident_b;
+    private MJIdentifierClass ident_a;
+    private MJIdentifierClass ident_b;
+
+    public MJTernary() {
+    }
+
+    public MJTernary(MJExpression condition, Object lhs, Object rhs) {
+        this.ident_opt = null;
+        
+        if (lhs instanceof MJExpression) {
+            this.expr_a = (MJExpression) lhs;
+        } else if (lhs instanceof MJIdentifierClass ) {
+            this.ident_a = (MJIdentifierClass) lhs;
+        }else {
+            System.err.println("tanerry error Motherfucker");// new Exception("Wrong input asshole");
+            System.exit(0);
+        }
+
+        if (rhs instanceof MJExpression) {
+            this.expr_b = (MJExpression) rhs;
+        } else if (rhs instanceof MJIdentifierClass ) {
+            this.ident_b = (MJIdentifierClass) rhs;
+        }else {
+            System.err.println("tanerry error Motherfucker");// new Exception("Wrong input asshole");
+            System.exit(0);
+        }
+    }
+
+    public MJTernary(MJIdentifierClass ident_opt, MJExpression condition, Object lhs, Object rhs) {
+        this.ident_opt = ident_opt;
+
+        if (lhs instanceof MJExpression) {
+            this.expr_a = (MJExpression) lhs;
+        } else {
+            this.ident_a = (MJIdentifierClass) lhs;
+        }
+
+        if (rhs instanceof MJExpression) {
+            this.expr_b = (MJExpression) rhs;
+        } else {
+            this.ident_b = (MJIdentifierClass) rhs;
+        }
+    }
+
 
     public MJExpression getCondition() {
         return condition;
