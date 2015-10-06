@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Iterator;
 import java.util.ArrayList;
 
+
 @SuppressWarnings({"all", "warnings", "unchecked", "unused", "cast"})
 public class MiniJavaParser extends Parser {
 	protected static final DFA[] _decisionToDFA;
