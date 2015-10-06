@@ -1,4 +1,4 @@
-// Generated from C:\Users\Thor\Dropbox\DUT\3.Sem\Compiler Teknik\Ass 3\MiniJava.g4 by ANTLR 4.1
+// Generated from C:\Users\Lime\Dropbox\3. Semester\Compiler Construction\GrammarFileMiniJava\MiniJava.g4 by ANTLR 4.1
 package compiler.Frontend;
 
 import org.antlr.v4.runtime.ParserRuleContext;
@@ -303,6 +303,19 @@ public class MiniJavaBaseListener implements MiniJavaListener {
 	 * <p/>
 	 * The default implementation does nothing.
 	 */
+	@Override public void enterVarDeclarationStaticArray(@NotNull MiniJavaParser.VarDeclarationStaticArrayContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitVarDeclarationStaticArray(@NotNull MiniJavaParser.VarDeclarationStaticArrayContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
 	@Override public void enterIdentifierId(@NotNull MiniJavaParser.IdentifierIdContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -557,6 +570,19 @@ public class MiniJavaBaseListener implements MiniJavaListener {
 	 * The default implementation does nothing.
 	 */
 	@Override public void exitExpressionNewObject(@NotNull MiniJavaParser.ExpressionNewObjectContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterVarDeclarationAssign(@NotNull MiniJavaParser.VarDeclarationAssignContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitVarDeclarationAssign(@NotNull MiniJavaParser.VarDeclarationAssignContext ctx) { }
 
 	/**
 	 * {@inheritDoc}

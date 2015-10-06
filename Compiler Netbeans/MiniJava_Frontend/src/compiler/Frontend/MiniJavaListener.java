@@ -1,4 +1,4 @@
-// Generated from C:\Users\Thor\Dropbox\DUT\3.Sem\Compiler Teknik\Ass 3\MiniJava.g4 by ANTLR 4.1
+// Generated from C:\Users\Lime\Dropbox\3. Semester\Compiler Construction\GrammarFileMiniJava\MiniJava.g4 by ANTLR 4.1
 package compiler.Frontend;
 import org.antlr.v4.runtime.misc.NotNull;
 import org.antlr.v4.runtime.tree.ParseTreeListener;
@@ -251,6 +251,17 @@ public interface MiniJavaListener extends ParseTreeListener {
 	void exitExpressionNegation(@NotNull MiniJavaParser.ExpressionNegationContext ctx);
 
 	/**
+	 * Enter a parse tree produced by {@link MiniJavaParser#varDeclarationStaticArray}.
+	 * @param ctx the parse tree
+	 */
+	void enterVarDeclarationStaticArray(@NotNull MiniJavaParser.VarDeclarationStaticArrayContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MiniJavaParser#varDeclarationStaticArray}.
+	 * @param ctx the parse tree
+	 */
+	void exitVarDeclarationStaticArray(@NotNull MiniJavaParser.VarDeclarationStaticArrayContext ctx);
+
+	/**
 	 * Enter a parse tree produced by {@link MiniJavaParser#identifierId}.
 	 * @param ctx the parse tree
 	 */
@@ -469,6 +480,17 @@ public interface MiniJavaListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitExpressionNewObject(@NotNull MiniJavaParser.ExpressionNewObjectContext ctx);
+
+	/**
+	 * Enter a parse tree produced by {@link MiniJavaParser#varDeclarationAssign}.
+	 * @param ctx the parse tree
+	 */
+	void enterVarDeclarationAssign(@NotNull MiniJavaParser.VarDeclarationAssignContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MiniJavaParser#varDeclarationAssign}.
+	 * @param ctx the parse tree
+	 */
+	void exitVarDeclarationAssign(@NotNull MiniJavaParser.VarDeclarationAssignContext ctx);
 
 	/**
 	 * Enter a parse tree produced by {@link MiniJavaParser#typeVoid}.

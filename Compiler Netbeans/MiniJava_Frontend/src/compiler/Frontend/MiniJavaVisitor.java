@@ -1,4 +1,4 @@
-// Generated from C:\Users\Thor\Dropbox\DUT\3.Sem\Compiler Teknik\Ass 3\MiniJava.g4 by ANTLR 4.1
+// Generated from C:\Users\Lime\Dropbox\3. Semester\Compiler Construction\GrammarFileMiniJava\MiniJava.g4 by ANTLR 4.1
 package compiler.Frontend;
 import org.antlr.v4.runtime.misc.NotNull;
 import org.antlr.v4.runtime.tree.ParseTreeVisitor;
@@ -166,6 +166,13 @@ public interface MiniJavaVisitor<T> extends ParseTreeVisitor<T> {
 	T visitExpressionNegation(@NotNull MiniJavaParser.ExpressionNegationContext ctx);
 
 	/**
+	 * Visit a parse tree produced by {@link MiniJavaParser#varDeclarationStaticArray}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitVarDeclarationStaticArray(@NotNull MiniJavaParser.VarDeclarationStaticArrayContext ctx);
+
+	/**
 	 * Visit a parse tree produced by {@link MiniJavaParser#identifierId}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -304,6 +311,13 @@ public interface MiniJavaVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitExpressionNewObject(@NotNull MiniJavaParser.ExpressionNewObjectContext ctx);
+
+	/**
+	 * Visit a parse tree produced by {@link MiniJavaParser#varDeclarationAssign}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitVarDeclarationAssign(@NotNull MiniJavaParser.VarDeclarationAssignContext ctx);
 
 	/**
 	 * Visit a parse tree produced by {@link MiniJavaParser#typeVoid}.
