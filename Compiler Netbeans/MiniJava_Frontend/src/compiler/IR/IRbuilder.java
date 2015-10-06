@@ -575,7 +575,8 @@ public class IRbuilder extends AbstractParseTreeVisitor<IR> implements MiniJavaV
 //		} else {
 //			elseBlock = (MJBlock)visitBlock(ctx.elseBlock);
 //			return new MJIfElse(condition, ifBlock, elseBlock);
-//		}	
+//		}
+        
         MJExpression condition = visitExpression(ctx.condition);
 
         Object lhs;
