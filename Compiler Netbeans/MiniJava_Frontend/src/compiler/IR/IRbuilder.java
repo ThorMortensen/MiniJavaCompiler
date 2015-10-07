@@ -7,6 +7,7 @@ import org.antlr.v4.runtime.tree.AbstractParseTreeVisitor;
 
 import compiler.Frontend.*;
 import compiler.Frontend.MiniJavaParser.*;
+import java.util.ArrayList;
 
 public class IRbuilder extends AbstractParseTreeVisitor<IR> implements MiniJavaVisitor<IR> {
 
@@ -48,6 +49,15 @@ public class IRbuilder extends AbstractParseTreeVisitor<IR> implements MiniJavaV
             variableDeclarations.add(visitVarDeclaration(c));
         }
 
+        for (MiniJavaParser.VarDeclarationAssignContext c : ctx.varDeclarationAssign()) {
+            variableDeclarations.add(visitVarDeclarationAssign(c));
+        }
+
+        for (MiniJavaParser.VarDeclarationStaticArrayContext c : ctx.varDeclarationStaticArray()) {
+            variableDeclarations.add(visitVarDeclarationStaticArray(c));
+        }
+
+        
         LinkedList<MJMethod> statements = new LinkedList<MJMethod>();
         for (MiniJavaParser.MethodDeclarationContext c : ctx.methodDeclaration()) {
             statements.add(visitMethodDeclaration(c));
@@ -85,6 +95,14 @@ public class IRbuilder extends AbstractParseTreeVisitor<IR> implements MiniJavaV
             variableDeclarations.add(var);
         }
 
+        for (MiniJavaParser.VarDeclarationAssignContext c : ctx.varDeclarationAssign()) {
+            variableDeclarations.add(visitVarDeclarationAssign(c));
+        }
+
+        for (MiniJavaParser.VarDeclarationStaticArrayContext c : ctx.varDeclarationStaticArray()) {
+            variableDeclarations.add(visitVarDeclarationStaticArray(c));
+        }
+
         LinkedList<MJStatement> statements = new LinkedList<MJStatement>();
         for (MiniJavaParser.StatementContext c : ctx.statement()) {
             statements.add(visitStatement(c));
@@ -96,14 +114,6 @@ public class IRbuilder extends AbstractParseTreeVisitor<IR> implements MiniJavaV
 //	varDeclaration
 //	  : var=variable ';'
 //	  ;
-    public MJVariable visitVarDeclaration(MiniJavaParser.VarDeclarationContext ctx) {
-        MJVariable x = visitVariable(ctx.var);
-        return x;
-    }
-    
-    
-    
-
 //	variable : type variableName=IDENT;
     public MJVariable visitVariable(MiniJavaParser.VariableContext ctx) {
 
@@ -182,6 +192,14 @@ public class IRbuilder extends AbstractParseTreeVisitor<IR> implements MiniJavaV
         LinkedList<MJVariable> variableDeclarations = new LinkedList<MJVariable>();
         for (MiniJavaParser.VarDeclarationContext c : ctx.varDeclaration()) {
             variableDeclarations.add(visitVarDeclaration(c));
+        }
+
+        for (MiniJavaParser.VarDeclarationAssignContext c : ctx.varDeclarationAssign()) {
+            variableDeclarations.add(visitVarDeclarationAssign(c));
+        }
+        
+        for (MiniJavaParser.VarDeclarationStaticArrayContext c : ctx.varDeclarationStaticArray()) {
+            variableDeclarations.add(visitVarDeclarationStaticArray(c));
         }
 
         LinkedList<MJStatement> statements = new LinkedList<MJStatement>();
@@ -376,7 +394,7 @@ public class IRbuilder extends AbstractParseTreeVisitor<IR> implements MiniJavaV
 //	level4
 //    : head=level5 ( '*' tail+=level5 )*
 //	  ;
-    public MJExpression visitLevel4(MiniJavaParser.Level4Context ctx) {
+     public MJExpression visitLevel4(MiniJavaParser.Level4Context ctx) {
 
         MJExpression root = visitLevel5(ctx.head);
 
@@ -530,7 +548,6 @@ public class IRbuilder extends AbstractParseTreeVisitor<IR> implements MiniJavaV
         return new MJNewArray(size);
     }
 
-    
     @Override
     public MJStatement visitStatementTernary(StatementTernaryContext ctx) {
 //        		MJExpression condition = (MJExpression)visitExpression(ctx.condition);
@@ -543,7 +560,7 @@ public class IRbuilder extends AbstractParseTreeVisitor<IR> implements MiniJavaV
 //			elseBlock = (MJBlock)visitBlock(ctx.elseBlock);
 //			return new MJIfElse(condition, ifBlock, elseBlock);
 //		}
-        
+
         MJExpression condition = visitExpression(ctx.condition);
 
         Object lhs;
@@ -560,16 +577,14 @@ public class IRbuilder extends AbstractParseTreeVisitor<IR> implements MiniJavaV
             rhs = visitIdentifier(ctx.ident_b);
         }
 
-
         MJIdentifierClass opt_ident;
-        if (ctx.opt_ident == null){
+        if (ctx.opt_ident == null) {
             return new MJTernary(condition, lhs, rhs);
-        }
-        else {
+        } else {
             opt_ident = visitIdentifier(ctx.opt_ident);
             return new MJTernary(opt_ident, condition, lhs, rhs);
         }
-        
+
 //        if ((opt_ident = (MJIdentifierClass) visitIdentifier(ctx.opt_ident)) == null) {
 //            return new MJTernary(condition, lhs, rhs);
 //        } else {
@@ -584,82 +599,99 @@ public class IRbuilder extends AbstractParseTreeVisitor<IR> implements MiniJavaV
 
     @Override
     public MJExpression visitExpressionPreIncrement(ExpressionPreIncrementContext ctx) {
-        MJIdentifierClass ident= visitIdentifier(ctx.ident);
+        MJIdentifierClass ident = visitIdentifier(ctx.ident);
         return new MJPreIncrement(ident);
     }
 
     @Override
     public MJVariable visitVarDeclarationStaticArray(VarDeclarationStaticArrayContext ctx) {
+
+        MJVariable x = visitVariable(ctx.var);
         
-                MJVariable x = visitVariable(ctx.var);
-                int size = ctx.expression().size();
-                MJExpression[] exp = new MJExpression[size];
-                for (int i=0; i<size; i++) {
-                    exp[i] = visitExpression(ctx.expression(i));
-                }
-                
-                return new MJVariable(x.getType(), x.getName(), exp);
+        ArrayList<MJExpression> exp = new ArrayList<MJExpression>();
+        
+        exp.add(visitExpression(ctx.expr));
+        
+        for (MiniJavaParser.ExpressionContext j : ctx.expr2) {
+            exp.add(visitExpression(j));
+        }
+
+        return new MJVariable(x.getType(), x.getName(), exp);
     }
 
     @Override
     public MJExpression visitExpressionPreDecrement(ExpressionPreDecrementContext ctx) {
-        MJIdentifierClass ident= visitIdentifier(ctx.ident);
-        return new MJPreDecrement(ident);    
+        MJIdentifierClass ident = visitIdentifier(ctx.ident);
+        return new MJPreDecrement(ident);
     }
 
     @Override
     public MJExpression visitExpressionPostIncrement(ExpressionPostIncrementContext ctx) {
-        MJIdentifierClass ident= visitIdentifier(ctx.ident);
+        MJIdentifierClass ident = visitIdentifier(ctx.ident);
         return new MJPostIncrement(ident);
     }
 
     @Override
-    public MJVariable visitVarDeclarationAssign(VarDeclarationAssignContext ctx) {
-        
-        
+    public MJVariable visitVarDeclaration(MiniJavaParser.VarDeclarationContext ctx) {
+
         MJVariable x = visitVariable(ctx.var);
-        
-        MJExpression expr;
-        MJStatement statem;
-        
-        if(ctx.expr != null){
-            expr = visitExpression(ctx.expr);
-            return new MJVariable(x.getType(), x.getName(), expr);
-        }
-        else{
-            statem = visitStatementMethod(ctx.statem);
-            return new MJVariable(x.getType(), x.getName(), statem);
-        }
-        
+        return x;
     }
 
+//    @Override
+//    public MJVariable visitVarDeclarationAssign(VarDeclarationAssignContext ctx) {
+//        
+//        
+//    }
     @Override
     public MJStatement visitStatementFor(StatementForContext ctx) {
-        return new MJfor(visitVarDeclarationAssign(ctx.var),visitExpression(ctx.condition),visitExpression(ctx.expr),visitStatement(ctx.forBlock));
+        return new MJfor(visitVarDeclarationAssign(ctx.var), visitExpression(ctx.condition), visitExpression(ctx.expr), visitStatement(ctx.forBlock));
     }
 
     @Override
     public MJStatement visitStatementIncrement(StatementIncrementContext ctx) {
-        if (ctx.ex_post_in != null){
+        if (ctx.ex_post_in != null) {
             return new MJStatementIncrement(visitExpressionPostIncrement(ctx.ex_post_in));
-        }else 
+        } else {
             return new MJStatementIncrement(visitExpressionPreIncrement(ctx.ex_pre_in));
+        }
     }
 
-        @Override
+    @Override
     public MJStatement visitStatementDecrement(StatementDecrementContext ctx) {
-        if (ctx.ex_post_de != null){
+        if (ctx.ex_post_de != null) {
             return new MJStatementDecrement(visitExpressionPostDecrement(ctx.ex_post_de));
-        }else 
+        } else {
             return new MJStatementDecrement(visitExpressionPreDecrement(ctx.ex_pre_de));
+        }
     }
-    
+
     @Override
     public MJExpression visitExpressionPostDecrement(ExpressionPostDecrementContext ctx) {
-        MJIdentifierClass ident= visitIdentifier(ctx.ident);
-        return new MJPostDecrement(ident);    
+        MJIdentifierClass ident = visitIdentifier(ctx.ident);
+        return new MJPostDecrement(ident);
     }
 
+    @Override
+    public IR visitStatementPlusEqual(StatementPlusEqualContext ctx) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 
-   
+    @Override
+    public MJVariable visitVarDeclarationAssign(VarDeclarationAssignContext ctx) {
+
+        MJVariable x = visitVariable(ctx.var);
+
+        MJExpression expr;
+        MJStatement statem;
+
+        if (ctx.expr != null) {
+            expr = visitExpression(ctx.expr);
+            return new MJVariable(x.getType(), x.getName(), expr);
+        } else {
+            statem = visitStatementMethod(ctx.statem);
+            return new MJVariable(x.getType(), x.getName(), statem);
+        }
+    }
+
 }

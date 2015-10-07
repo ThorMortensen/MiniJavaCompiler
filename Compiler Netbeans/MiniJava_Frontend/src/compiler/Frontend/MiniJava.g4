@@ -22,7 +22,7 @@ mainClass
 block  : CURLYOPEN ( varDeclaration | varDeclarationAssign | varDeclarationStaticArray)* ( statement )* CURLYCLOSE;
 
 varDeclaration
-  : var=variable  SEMICOLON
+  : var=variable SEMICOLON
   ;
 
 varDeclarationAssign
@@ -30,7 +30,7 @@ varDeclarationAssign
     ;
 
 varDeclarationStaticArray
-    : var=variable EQUAL CURLYOPEN (expression) (COMMA expression)*? CURLYCLOSE SEMICOLON
+    : var=variable EQUAL CURLYOPEN (expr=expression) (COMMA expr2+=expression)*? CURLYCLOSE SEMICOLON
     ;
 
 variable : type variableName=IDENT
@@ -84,6 +84,7 @@ statement
   | statementIf
   | statementWhile
   | statementAssign
+  | statementPlusEqual
   | statementAssignArray
   | statementPrintln
   | statementPrint
@@ -92,13 +93,13 @@ statement
   | statementTernary
   | statementIncrement
   | statementDecrement
-  |statementFor
+  | statementFor
   ;     
    
 statementIf          : IF ROUNDOPEN condition=expression ROUNDCLOSE ifBlock=block (ELSE elseBlock=block )? ;
 statementWhile       : WHILE ROUNDOPEN condition=expression ROUNDCLOSE whileBlock=statement ;
-statementAssign      : lhs=identifier EQUAL rhs=expression SEMICOLON
-                     | lhs=identifier PLUSEQUAL rhs=expression SEMICOLON ;
+statementAssign      : lhs=identifier EQUAL rhs=expression SEMICOLON ;
+statementPlusEqual   : lhs=identifier PLUSEQUAL rhs=expression SEMICOLON ;
 statementAssignArray : array=identifier SQUAREOPEN element=expression SQUARECLOSE EQUAL value=expression SEMICOLON ;
 statementPrint       : PRINT ROUNDOPEN argument=expression ROUNDCLOSE SEMICOLON ;
 statementPrintln     : PRINTLN ROUNDOPEN argument=expression ROUNDCLOSE SEMICOLON ;

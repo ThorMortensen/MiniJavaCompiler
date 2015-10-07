@@ -93,6 +93,57 @@ public class PrettyPrint extends IRElementVisitor<Integer> {
         visitType(e.getType());
         pp.print(" ");
         pp.print(e.getName());
+        if (e.getExpr() != null) {
+            pp.print(" = ");
+            visitExpression(e.getExpr());
+        } else if (e.getStatem() != null) {
+            pp.print(" = ");
+            visitStatement(e.getStatem());
+        } else if (e.getExp() != null) {
+            pp.print(" = ");
+            pp.print("{");
+            visitExpression(e.getExp().get(0));
+            for (int i = 1; i<e.getExp().size();i++) {   
+                pp.print(",");
+                visitExpression(e.getExp().get(i));
+            }
+            pp.print("}");
+        }
+
+        return null;
+    }
+
+    @Override
+    public Integer visitVarDeclarationStaticArray(MJVariable e) throws VisitorException {
+        visitType(e.getType());
+        pp.print(" ");
+        pp.print(e.getName());
+        if (e.getExp() != null) {
+            pp.print(" = ");
+            visitExpression(e.getExp().get(0));
+            
+            //for (MJExpression ex : e.getExp()) {
+            //    visitExpression(ex);
+            //}
+        }
+        return null;
+    }
+
+    @Override
+    public Integer visitVarDeclarationAssign(MJVariable e) throws VisitorException {
+        visitType(e.getType());
+        pp.print(" ");
+        pp.print(e.getName());
+        if (e.getExpr() != null) {
+            pp.print(" = ");
+            visitExpression(e.getExpr());
+        } else if (e.getStatem() != null) {
+            pp.print(" = ");
+            visitStatement(e.getStatem());
+        } else if (e.getExp() != null) {
+            pp.print(" = ");
+            //    visitExpression(for (MJExpression i:e.getExp()){i.});
+        }
 
         return null;
     }
@@ -221,28 +272,24 @@ public class PrettyPrint extends IRElementVisitor<Integer> {
     public Integer visitStatement(MJfor e) throws VisitorException {
         pp.print("for (");
         visitVariable(e.getVar());
-        pp.print(" = ");
-        visitExpression(e.getVar().getExpr());
         pp.print(" ; ");
         visitExpression(e.getCondition());
         pp.print(" ; ");
         if (e.getExpr() instanceof MJPostDecrement) {
             visitExpression(e.getExpr());
             pp.print("--");
-        }
-        else if(e.getExpr() instanceof MJPostIncrement){
+        } else if (e.getExpr() instanceof MJPostIncrement) {
             visitExpression(e.getExpr());
             pp.print("++");
-        }
-        else if(e.getExpr() instanceof MJPreDecrement){
+        } else if (e.getExpr() instanceof MJPreDecrement) {
             pp.print("--");
             visitExpression(e.getExpr());
-        }
-        else{
+        } else {
             pp.print("++");
             visitExpression(e.getExpr());
         }
         pp.println(" ) ");
+        visitStatement(e.getBlock());
 
         return null;
     }

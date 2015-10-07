@@ -680,6 +680,19 @@ public class MiniJavaBaseListener implements MiniJavaListener {
 	 * <p/>
 	 * The default implementation does nothing.
 	 */
+	@Override public void enterStatementPlusEqual(@NotNull MiniJavaParser.StatementPlusEqualContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitStatementPlusEqual(@NotNull MiniJavaParser.StatementPlusEqualContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
 	@Override public void enterStatementTernary(@NotNull MiniJavaParser.StatementTernaryContext ctx) { }
 	/**
 	 * {@inheritDoc}

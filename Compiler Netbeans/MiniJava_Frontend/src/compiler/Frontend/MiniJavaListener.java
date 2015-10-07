@@ -570,6 +570,17 @@ public interface MiniJavaListener extends ParseTreeListener {
 	void exitTypeInt(@NotNull MiniJavaParser.TypeIntContext ctx);
 
 	/**
+	 * Enter a parse tree produced by {@link MiniJavaParser#statementPlusEqual}.
+	 * @param ctx the parse tree
+	 */
+	void enterStatementPlusEqual(@NotNull MiniJavaParser.StatementPlusEqualContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MiniJavaParser#statementPlusEqual}.
+	 * @param ctx the parse tree
+	 */
+	void exitStatementPlusEqual(@NotNull MiniJavaParser.StatementPlusEqualContext ctx);
+
+	/**
 	 * Enter a parse tree produced by {@link MiniJavaParser#statementTernary}.
 	 * @param ctx the parse tree
 	 */

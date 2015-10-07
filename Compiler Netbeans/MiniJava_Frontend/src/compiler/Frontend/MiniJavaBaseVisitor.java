@@ -426,6 +426,14 @@ public class MiniJavaBaseVisitor<T> extends AbstractParseTreeVisitor<T> implemen
 	 * The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.
 	 */
+	@Override public T visitStatementPlusEqual(@NotNull MiniJavaParser.StatementPlusEqualContext ctx) { return visitChildren(ctx); }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.
+	 */
 	@Override public T visitStatementTernary(@NotNull MiniJavaParser.StatementTernaryContext ctx) { return visitChildren(ctx); }
 
 	/**

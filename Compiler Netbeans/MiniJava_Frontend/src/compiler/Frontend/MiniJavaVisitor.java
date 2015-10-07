@@ -369,6 +369,13 @@ public interface MiniJavaVisitor<T> extends ParseTreeVisitor<T> {
 	T visitTypeInt(@NotNull MiniJavaParser.TypeIntContext ctx);
 
 	/**
+	 * Visit a parse tree produced by {@link MiniJavaParser#statementPlusEqual}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitStatementPlusEqual(@NotNull MiniJavaParser.StatementPlusEqualContext ctx);
+
+	/**
 	 * Visit a parse tree produced by {@link MiniJavaParser#statementTernary}.
 	 * @param ctx the parse tree
 	 * @return the visitor result

@@ -7,10 +7,13 @@ public abstract class IRElementVisitor<T> {
 
 	public abstract T visitProgram(MJProgram e) throws VisitorException;
 	public abstract T visitClass(MJClass e) throws VisitorException;
-	public abstract T visitVariable(MJVariable e) throws VisitorException;
+	public abstract T visitVariable(MJVariable e) throws VisitorException;	
+        public abstract T visitVarDeclarationAssign(MJVariable e) throws VisitorException;
+        public abstract T visitVarDeclarationStaticArray(MJVariable e) throws VisitorException;
 	public abstract T visitType(MJType e) throws VisitorException;
 	public abstract T visitMethod(MJMethod e) throws VisitorException;
 
+        
 	public T visitStatement(MJStatement e) throws VisitorException {
 		if (e instanceof MJBlock) return visitStatement((MJBlock)e);
 		if (e instanceof MJIfElse) return visitStatement((MJIfElse)e);
@@ -25,6 +28,7 @@ public abstract class IRElementVisitor<T> {
 		if (e instanceof MJStatementDecrement) return visitStatement((MJStatementDecrement)e);
 		if (e instanceof MJStatementIncrement) return visitStatement((MJStatementIncrement)e);
                 if (e instanceof MJTernary) return visitStatement((MJTernary)e);
+
 		throw new VisitorException("unknown statement class "+e.getClass().getName());
 	}
 	
