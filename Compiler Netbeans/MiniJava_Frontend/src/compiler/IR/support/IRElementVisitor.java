@@ -8,11 +8,8 @@ public abstract class IRElementVisitor<T> {
 	public abstract T visitProgram(MJProgram e) throws VisitorException;
 	public abstract T visitClass(MJClass e) throws VisitorException;
 	public abstract T visitVariable(MJVariable e) throws VisitorException;	
-        public abstract T visitVarDeclarationAssign(MJVariable e) throws VisitorException;
-        public abstract T visitVarDeclarationStaticArray(MJVariable e) throws VisitorException;
 	public abstract T visitType(MJType e) throws VisitorException;
 	public abstract T visitMethod(MJMethod e) throws VisitorException;
-
         
 	public T visitStatement(MJStatement e) throws VisitorException {
 		if (e instanceof MJBlock) return visitStatement((MJBlock)e);
@@ -20,6 +17,7 @@ public abstract class IRElementVisitor<T> {
 		if (e instanceof MJIf) return visitStatement((MJIf)e);
 		if (e instanceof MJWhile) return visitStatement((MJWhile)e);
 		if (e instanceof MJAssign) return visitStatement((MJAssign)e);
+		//if (e instanceof MJAssign) return visitStatement((MJAssign)e ,boolean t);
 		if (e instanceof MJPrint) return visitStatement((MJPrint)e);
 		if (e instanceof MJPrintln) return visitStatement((MJPrintln)e);
 		if (e instanceof MJMethodCallStmt) return visitStatement((MJMethodCallStmt)e);
@@ -28,7 +26,8 @@ public abstract class IRElementVisitor<T> {
 		if (e instanceof MJStatementDecrement) return visitStatement((MJStatementDecrement)e);
 		if (e instanceof MJStatementIncrement) return visitStatement((MJStatementIncrement)e);
                 if (e instanceof MJTernary) return visitStatement((MJTernary)e);
-
+                if (e instanceof MJPlusEqual) return visitStatement((MJPlusEqual)e);
+                
 		throw new VisitorException("unknown statement class "+e.getClass().getName());
 	}
 	
@@ -41,12 +40,14 @@ public abstract class IRElementVisitor<T> {
 	public abstract T visitStatement(MJPrintln e) throws VisitorException;
 	public abstract T visitStatement(MJMethodCallStmt e) throws VisitorException;
 	public abstract T visitStatement(MJReturn e) throws VisitorException;
-        
+        public abstract T visitStatement(MJPlusEqual e) throws VisitorException;
         public abstract T visitStatement(MJfor e) throws VisitorException;
 	public abstract T visitStatement(MJStatementDecrement e) throws VisitorException;
 	public abstract T visitStatement(MJStatementIncrement e) throws VisitorException;
 	public abstract T visitStatement(MJTernary e) throws VisitorException;
+        public abstract T visitStatement(MJAssign e ,boolean t)throws VisitorException;
 
+        
 	public T visitExpression(MJExpression e) throws VisitorException {
 		if (e instanceof MJAnd) return visitExpression((MJAnd)e);
 		if (e instanceof MJEqual) return visitExpression((MJEqual)e);

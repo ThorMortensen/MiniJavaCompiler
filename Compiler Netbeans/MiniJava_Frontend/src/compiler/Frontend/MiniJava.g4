@@ -107,7 +107,7 @@ statementMethod      : ex_method=expressionMethodCall SEMICOLON;
 statementTernary     : (opt_ident=identifier EQUAL)? (condition=expression TERNARY_PART1 (ident_a=identifier | expr_a=expression) TERNARY_PART2 (ident_b=identifier | expr_b=expression) SEMICOLON);
 statementIncrement    : (ex_post_in=expressionPostIncrement | ex_pre_in=expressionPreIncrement) SEMICOLON;
 statementDecrement    : (ex_post_de=expressionPostDecrement | ex_pre_de=expressionPreDecrement) SEMICOLON;
-statementFor         : FOR ROUNDOPEN (var = varDeclarationAssign) condition=expression SEMICOLON expr=expression ROUNDCLOSE forBlock=statement;          
+statementFor         : FOR ROUNDOPEN (var = varDeclarationAssign | var2 = statementAssign) condition=expression SEMICOLON expr=expression ROUNDCLOSE forBlock=statement;          
 
 statementReturn  : RETURN ( argument=expression )? SEMICOLON ;
 

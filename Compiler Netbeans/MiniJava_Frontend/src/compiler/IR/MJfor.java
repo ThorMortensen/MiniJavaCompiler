@@ -14,17 +14,32 @@ public class MJfor extends MJStatement {
     public MJfor() {
     }
 
+    public MJStatement getState() {
+        return state;
+    }
+
     private MJExpression condition;
     private MJExpression expr;
     private MJStatement block;
     private MJVariable var;
+    private MJStatement state;
 
     public MJfor(MJVariable var, MJExpression condition, MJExpression expr, MJStatement block) {
         this.condition = condition;
         this.expr = expr;
         this.block = block;
         this.var = var;
+        this.state = null;
     }
+    
+    public MJfor(MJStatement var2, MJExpression condition, MJExpression expr, MJStatement block) {
+        this.condition = condition;
+        this.expr = expr;
+        this.block = block;
+        this.var = var;
+        this.state = var2;
+    }
+
 
     public MJExpression getCondition() {
         return condition;

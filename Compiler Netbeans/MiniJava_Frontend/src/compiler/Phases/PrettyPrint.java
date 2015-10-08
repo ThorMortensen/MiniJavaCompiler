@@ -5,6 +5,7 @@ import compiler.IR.support.IRElementVisitor;
 import compiler.Exceptions.VisitorException;
 
 import java.io.PrintStream;
+import javax.swing.text.StyledEditorKit;
 
 public class PrettyPrint extends IRElementVisitor<Integer> {
 
@@ -114,41 +115,6 @@ public class PrettyPrint extends IRElementVisitor<Integer> {
     }
 
     @Override
-    public Integer visitVarDeclarationStaticArray(MJVariable e) throws VisitorException {
-        visitType(e.getType());
-        pp.print(" ");
-        pp.print(e.getName());
-        if (e.getExp() != null) {
-            pp.print(" = ");
-            visitExpression(e.getExp().get(0));
-            
-            //for (MJExpression ex : e.getExp()) {
-            //    visitExpression(ex);
-            //}
-        }
-        return null;
-    }
-
-    @Override
-    public Integer visitVarDeclarationAssign(MJVariable e) throws VisitorException {
-        visitType(e.getType());
-        pp.print(" ");
-        pp.print(e.getName());
-        if (e.getExpr() != null) {
-            pp.print(" = ");
-            visitExpression(e.getExpr());
-        } else if (e.getStatem() != null) {
-            pp.print(" = ");
-            visitStatement(e.getStatem());
-        } else if (e.getExp() != null) {
-            pp.print(" = ");
-            //    visitExpression(for (MJExpression i:e.getExp()){i.});
-        }
-
-        return null;
-    }
-
-    @Override
     public Integer visitType(MJType e) throws VisitorException {
         pp.print(e.toString());
         return null;
@@ -193,6 +159,7 @@ public class PrettyPrint extends IRElementVisitor<Integer> {
             visitStatement(statement);
         }
         pp.out();
+        pp.println("");
         pp.println("}");
         return null;
     }
@@ -234,6 +201,16 @@ public class PrettyPrint extends IRElementVisitor<Integer> {
         pp.println(";");
         return null;
     }
+   
+    @Override
+    public Integer visitStatement(MJAssign e,boolean t) throws VisitorException {
+        visitExpression(e.getLhs());
+        pp.print(" = ");
+        visitExpression(e.getRhs());
+        pp.print(";");
+        return null;
+    }
+
 
     @Override
     public Integer visitStatement(MJPrint e) throws VisitorException {
@@ -269,28 +246,30 @@ public class PrettyPrint extends IRElementVisitor<Integer> {
     }
 
     @Override
+    public Integer visitStatement(MJPlusEqual e) throws VisitorException {
+          visitExpression(e.getLhs());
+          pp.print(" += ");
+          visitExpression(e.getRhs());
+          pp.println(";");
+        return null;
+    }
+    
+    @Override
     public Integer visitStatement(MJfor e) throws VisitorException {
         pp.print("for (");
-        visitVariable(e.getVar());
-        pp.print(" ; ");
+        if(e.getVar() != null){
+            visitVariable(e.getVar());
+            
+        }else 
+        {
+            visitStatement((MJAssign) e.getState(), true);
+        }
+        
         visitExpression(e.getCondition());
         pp.print(" ; ");
-        if (e.getExpr() instanceof MJPostDecrement) {
-            visitExpression(e.getExpr());
-            pp.print("--");
-        } else if (e.getExpr() instanceof MJPostIncrement) {
-            visitExpression(e.getExpr());
-            pp.print("++");
-        } else if (e.getExpr() instanceof MJPreDecrement) {
-            pp.print("--");
-            visitExpression(e.getExpr());
-        } else {
-            pp.print("++");
-            visitExpression(e.getExpr());
-        }
-        pp.println(" ) ");
+        visitExpression(e.getExpr());
+        pp.print(" ) ");
         visitStatement(e.getBlock());
-
         return null;
     }
 
@@ -492,23 +471,27 @@ public class PrettyPrint extends IRElementVisitor<Integer> {
     @Override
     public Integer visitExpression(MJPostDecrement e) throws VisitorException {
         visitExpression(e.getIdent());
+        pp.print("--");
         return null;
     }
 
     @Override
     public Integer visitExpression(MJPostIncrement e) throws VisitorException {
         visitExpression(e.getIdent());
+        pp.print("++");
         return null;
     }
 
     @Override
     public Integer visitExpression(MJPreDecrement e) throws VisitorException {
+        pp.print("--");
         visitExpression(e.getIdent());
         return null;
     }
 
     @Override
     public Integer visitExpression(MJPreIncrement e) throws VisitorException {
+        pp.print("++");
         visitExpression(e.getIdent());
         return null;
     }

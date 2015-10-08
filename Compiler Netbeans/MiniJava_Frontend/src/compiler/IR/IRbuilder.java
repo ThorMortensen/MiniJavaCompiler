@@ -48,15 +48,6 @@ public class IRbuilder extends AbstractParseTreeVisitor<IR> implements MiniJavaV
         for (MiniJavaParser.VarDeclarationContext c : ctx.varDeclaration()) {
             variableDeclarations.add(visitVarDeclaration(c));
         }
-
-        for (MiniJavaParser.VarDeclarationAssignContext c : ctx.varDeclarationAssign()) {
-            variableDeclarations.add(visitVarDeclarationAssign(c));
-        }
-
-        for (MiniJavaParser.VarDeclarationStaticArrayContext c : ctx.varDeclarationStaticArray()) {
-            variableDeclarations.add(visitVarDeclarationStaticArray(c));
-        }
-
         
         LinkedList<MJMethod> statements = new LinkedList<MJMethod>();
         for (MiniJavaParser.MethodDeclarationContext c : ctx.methodDeclaration()) {
@@ -95,14 +86,6 @@ public class IRbuilder extends AbstractParseTreeVisitor<IR> implements MiniJavaV
             variableDeclarations.add(var);
         }
 
-        for (MiniJavaParser.VarDeclarationAssignContext c : ctx.varDeclarationAssign()) {
-            variableDeclarations.add(visitVarDeclarationAssign(c));
-        }
-
-        for (MiniJavaParser.VarDeclarationStaticArrayContext c : ctx.varDeclarationStaticArray()) {
-            variableDeclarations.add(visitVarDeclarationStaticArray(c));
-        }
-
         LinkedList<MJStatement> statements = new LinkedList<MJStatement>();
         for (MiniJavaParser.StatementContext c : ctx.statement()) {
             statements.add(visitStatement(c));
@@ -110,11 +93,7 @@ public class IRbuilder extends AbstractParseTreeVisitor<IR> implements MiniJavaV
 
         return new MJBlock(variableDeclarations, statements);
     }
-
-//	varDeclaration
-//	  : var=variable ';'
-//	  ;
-//	variable : type variableName=IDENT;
+    
     public MJVariable visitVariable(MiniJavaParser.VariableContext ctx) {
 
         MJType variableType = visitType(ctx.type());
@@ -124,21 +103,7 @@ public class IRbuilder extends AbstractParseTreeVisitor<IR> implements MiniJavaV
 
         return x;
     }
-
-//	type 
-//	   : typeBasic
-//	   | typeArray
-//	   ;
-//
-//	typeBasic
-//	  : typeBoolean
-//	  | typeInt
-//	  | typeClass
-//	  ;
-//
-//	typeBoolean : 'boolean' ;
-//	typeInt     : 'int' ;
-//	typeClass   : className=IDENT;
+    
     public MJType visitType(MiniJavaParser.TypeContext ctx) {
         return (MJType) visitChildren(ctx);
     }
@@ -645,9 +610,14 @@ public class IRbuilder extends AbstractParseTreeVisitor<IR> implements MiniJavaV
 //    }
     @Override
     public MJStatement visitStatementFor(StatementForContext ctx) {
-        return new MJfor(visitVarDeclarationAssign(ctx.var), visitExpression(ctx.condition), visitExpression(ctx.expr), visitStatement(ctx.forBlock));
+        if(ctx.var != null){
+            return new MJfor(visitVarDeclarationAssign(ctx.var), visitExpression(ctx.condition), visitExpression(ctx.expr), visitStatement(ctx.forBlock));
+        }
+        else{
+            return new MJfor(visitStatementAssign(ctx.var2), visitExpression(ctx.condition), visitExpression(ctx.expr), visitStatement(ctx.forBlock));
+        }
     }
-
+    
     @Override
     public MJStatement visitStatementIncrement(StatementIncrementContext ctx) {
         if (ctx.ex_post_in != null) {
@@ -673,8 +643,11 @@ public class IRbuilder extends AbstractParseTreeVisitor<IR> implements MiniJavaV
     }
 
     @Override
-    public IR visitStatementPlusEqual(StatementPlusEqualContext ctx) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public MJPlusEqual visitStatementPlusEqual(StatementPlusEqualContext ctx) {
+        MJIdentifierClass x = visitIdentifier(ctx.lhs);
+        MJExpression y = visitExpression(ctx.rhs);
+        
+        return new MJPlusEqual(x, y);
     }
 
     @Override
