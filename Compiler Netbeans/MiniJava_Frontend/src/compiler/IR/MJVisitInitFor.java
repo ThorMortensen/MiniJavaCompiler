@@ -9,37 +9,20 @@ package compiler.IR;
  *
  * @author Thor
  */
-public class MJfor extends MJStatement {
-
-    public MJfor() {
-    }
-
-    public MJStatement getState() {
-        return state;
-    }
+public class MJVisitInitFor extends IR {
 
     private MJExpression condition;
     private MJExpression expr;
     private MJStatement block;
-    private MJVariable var;
-    private MJStatement state;
 
-    public MJfor(MJVariable var, MJExpression condition, MJExpression expr, MJStatement block) {
+    public MJVisitInitFor() {
+    }
+
+    public MJVisitInitFor(MJExpression condition, MJExpression expr, MJStatement block) {
         this.condition = condition;
         this.expr = expr;
         this.block = block;
-        this.var = var;
-        this.state = null;
     }
-    
-    public MJfor(MJStatement var2, MJExpression condition, MJExpression expr, MJStatement block) {
-        this.condition = condition;
-        this.expr = expr;
-        this.block = block;
-        this.var = var;
-        this.state = var2;
-    }
-
 
     public MJExpression getCondition() {
         return condition;
@@ -51,10 +34,6 @@ public class MJfor extends MJStatement {
 
     public MJStatement getBlock() {
         return block;
-    }
-
-    public MJVariable getVar() {
-        return var;
     }
 
 }

@@ -22,7 +22,7 @@ public abstract class IRElementVisitor<T> {
 		if (e instanceof MJPrintln) return visitStatement((MJPrintln)e);
 		if (e instanceof MJMethodCallStmt) return visitStatement((MJMethodCallStmt)e);
 		if (e instanceof MJReturn) return visitStatement((MJReturn)e);
-		if (e instanceof MJfor) return visitStatement((MJfor)e);
+		if (e instanceof MJForExp) return visitStatement((MJForExp)e);
 		if (e instanceof MJStatementDecrement) return visitStatement((MJStatementDecrement)e);
 		if (e instanceof MJStatementIncrement) return visitStatement((MJStatementIncrement)e);
                 if (e instanceof MJTernary) return visitStatement((MJTernary)e);
@@ -41,7 +41,7 @@ public abstract class IRElementVisitor<T> {
 	public abstract T visitStatement(MJMethodCallStmt e) throws VisitorException;
 	public abstract T visitStatement(MJReturn e) throws VisitorException;
         public abstract T visitStatement(MJPlusEqual e) throws VisitorException;
-        public abstract T visitStatement(MJfor e) throws VisitorException;
+        public abstract T visitStatement(MJForExp e) throws VisitorException;
 	public abstract T visitStatement(MJStatementDecrement e) throws VisitorException;
 	public abstract T visitStatement(MJStatementIncrement e) throws VisitorException;
 	public abstract T visitStatement(MJTernary e) throws VisitorException;

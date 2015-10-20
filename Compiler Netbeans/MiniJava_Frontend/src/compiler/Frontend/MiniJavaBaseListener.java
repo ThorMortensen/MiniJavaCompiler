@@ -290,19 +290,6 @@ public class MiniJavaBaseListener implements MiniJavaListener {
 	 * <p/>
 	 * The default implementation does nothing.
 	 */
-	@Override public void enterVarDeclarationStaticArray(@NotNull MiniJavaParser.VarDeclarationStaticArrayContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 * <p/>
-	 * The default implementation does nothing.
-	 */
-	@Override public void exitVarDeclarationStaticArray(@NotNull MiniJavaParser.VarDeclarationStaticArrayContext ctx) { }
-
-	/**
-	 * {@inheritDoc}
-	 * <p/>
-	 * The default implementation does nothing.
-	 */
 	@Override public void enterIdentifierId(@NotNull MiniJavaParser.IdentifierIdContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -323,6 +310,19 @@ public class MiniJavaBaseListener implements MiniJavaListener {
 	 * The default implementation does nothing.
 	 */
 	@Override public void exitTypeClass(@NotNull MiniJavaParser.TypeClassContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterInitFor(@NotNull MiniJavaParser.InitForContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitInitFor(@NotNull MiniJavaParser.InitForContext ctx) { }
 
 	/**
 	 * {@inheritDoc}
@@ -524,6 +524,19 @@ public class MiniJavaBaseListener implements MiniJavaListener {
 	 * <p/>
 	 * The default implementation does nothing.
 	 */
+	@Override public void enterInitExpression(@NotNull MiniJavaParser.InitExpressionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitInitExpression(@NotNull MiniJavaParser.InitExpressionContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
 	@Override public void enterTypeBasic(@NotNull MiniJavaParser.TypeBasicContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -531,6 +544,19 @@ public class MiniJavaBaseListener implements MiniJavaListener {
 	 * The default implementation does nothing.
 	 */
 	@Override public void exitTypeBasic(@NotNull MiniJavaParser.TypeBasicContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterInitStaticArray(@NotNull MiniJavaParser.InitStaticArrayContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitInitStaticArray(@NotNull MiniJavaParser.InitStaticArrayContext ctx) { }
 
 	/**
 	 * {@inheritDoc}
@@ -583,19 +609,6 @@ public class MiniJavaBaseListener implements MiniJavaListener {
 	 * The default implementation does nothing.
 	 */
 	@Override public void exitExpressionNewObject(@NotNull MiniJavaParser.ExpressionNewObjectContext ctx) { }
-
-	/**
-	 * {@inheritDoc}
-	 * <p/>
-	 * The default implementation does nothing.
-	 */
-	@Override public void enterVarDeclarationAssign(@NotNull MiniJavaParser.VarDeclarationAssignContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 * <p/>
-	 * The default implementation does nothing.
-	 */
-	@Override public void exitVarDeclarationAssign(@NotNull MiniJavaParser.VarDeclarationAssignContext ctx) { }
 
 	/**
 	 * {@inheritDoc}

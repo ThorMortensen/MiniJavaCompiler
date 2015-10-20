@@ -159,13 +159,6 @@ public interface MiniJavaVisitor<T> extends ParseTreeVisitor<T> {
 	T visitExpressionNegation(@NotNull MiniJavaParser.ExpressionNegationContext ctx);
 
 	/**
-	 * Visit a parse tree produced by {@link MiniJavaParser#varDeclarationStaticArray}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitVarDeclarationStaticArray(@NotNull MiniJavaParser.VarDeclarationStaticArrayContext ctx);
-
-	/**
 	 * Visit a parse tree produced by {@link MiniJavaParser#identifierId}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -178,6 +171,13 @@ public interface MiniJavaVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitTypeClass(@NotNull MiniJavaParser.TypeClassContext ctx);
+
+	/**
+	 * Visit a parse tree produced by {@link MiniJavaParser#initFor}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitInitFor(@NotNull MiniJavaParser.InitForContext ctx);
 
 	/**
 	 * Visit a parse tree produced by {@link MiniJavaParser#expressionArrayAccess}.
@@ -285,11 +285,25 @@ public interface MiniJavaVisitor<T> extends ParseTreeVisitor<T> {
 	T visitExpressionConstantFalse(@NotNull MiniJavaParser.ExpressionConstantFalseContext ctx);
 
 	/**
+	 * Visit a parse tree produced by {@link MiniJavaParser#initExpression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitInitExpression(@NotNull MiniJavaParser.InitExpressionContext ctx);
+
+	/**
 	 * Visit a parse tree produced by {@link MiniJavaParser#typeBasic}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitTypeBasic(@NotNull MiniJavaParser.TypeBasicContext ctx);
+
+	/**
+	 * Visit a parse tree produced by {@link MiniJavaParser#initStaticArray}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitInitStaticArray(@NotNull MiniJavaParser.InitStaticArrayContext ctx);
 
 	/**
 	 * Visit a parse tree produced by {@link MiniJavaParser#classDeclaration}.
@@ -318,13 +332,6 @@ public interface MiniJavaVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitExpressionNewObject(@NotNull MiniJavaParser.ExpressionNewObjectContext ctx);
-
-	/**
-	 * Visit a parse tree produced by {@link MiniJavaParser#varDeclarationAssign}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitVarDeclarationAssign(@NotNull MiniJavaParser.VarDeclarationAssignContext ctx);
 
 	/**
 	 * Visit a parse tree produced by {@link MiniJavaParser#typeVoid}.

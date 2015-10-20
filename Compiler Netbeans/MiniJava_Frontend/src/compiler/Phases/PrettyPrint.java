@@ -255,7 +255,7 @@ public class PrettyPrint extends IRElementVisitor<Integer> {
     }
     
     @Override
-    public Integer visitStatement(MJfor e) throws VisitorException {
+    public Integer visitStatement(MJForExp e) throws VisitorException {
         pp.print("for (");
         if(e.getVar() != null){
             visitVariable(e.getVar());

@@ -7,7 +7,7 @@ program
 classDeclaration
    : CLASS className=IDENT ( EXTENDS superClassName=IDENT )? 
     CURLYOPEN 
-        ( varDeclaration | varDeclarationAssign | varDeclarationStaticArray)* 
+        ( varDeclaration )* 
         ( methodDeclaration )*
     CURLYCLOSE
   ;
@@ -19,18 +19,24 @@ mainClass
     CURLYCLOSE
   ;
   
-block  : CURLYOPEN ( varDeclaration | varDeclarationAssign | varDeclarationStaticArray)* ( statement )* CURLYCLOSE;
+block  : CURLYOPEN ( varDeclaration )* ( statement )* CURLYCLOSE;
 
 varDeclaration
-  : var=variable SEMICOLON
+  : var=variable ( EQUAL initExpression )? SEMICOLON
   ;
 
-varDeclarationAssign
-    : var=variable EQUAL (expr=expression | statem=statementMethod) SEMICOLON
-    ;
+initExpression 
+: expression
+| initStaticArray
+;
 
-varDeclarationStaticArray
-    : var=variable EQUAL CURLYOPEN (expr=expression) (COMMA expr2+=expression)*? CURLYCLOSE SEMICOLON
+initFor 
+: varDeclaration
+| statementAssign
+;
+
+initStaticArray
+    : CURLYOPEN ((expr+=expression) (COMMA expr+=expression)*)? CURLYCLOSE 
     ;
 
 variable : type variableName=IDENT
@@ -66,7 +72,7 @@ methodDeclaration
       ( variable ( COMMA variable )* )? 
     ROUNDCLOSE 
     CURLYOPEN 
-        ( varDeclaration | varDeclarationAssign | varDeclarationStaticArray)* 
+        ( varDeclaration)* 
         ( statement )*
         statementReturn
     CURLYCLOSE
@@ -107,7 +113,7 @@ statementMethod      : ex_method=expressionMethodCall SEMICOLON;
 statementTernary     : (opt_ident=identifier EQUAL)? (condition=expression TERNARY_PART1 (ident_a=identifier | expr_a=expression) TERNARY_PART2 (ident_b=identifier | expr_b=expression) SEMICOLON);
 statementIncrement    : (ex_post_in=expressionPostIncrement | ex_pre_in=expressionPreIncrement) SEMICOLON;
 statementDecrement    : (ex_post_de=expressionPostDecrement | ex_pre_de=expressionPreDecrement) SEMICOLON;
-statementFor         : FOR ROUNDOPEN (var = varDeclarationAssign | var2 = statementAssign) condition=expression SEMICOLON expr=expression ROUNDCLOSE forBlock=statement;          
+statementFor         : FOR ROUNDOPEN (var=initFor ) condition=expression SEMICOLON expr=expression ROUNDCLOSE forBlock=statement;          
 
 statementReturn  : RETURN ( argument=expression )? SEMICOLON ;
 
